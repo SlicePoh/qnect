@@ -1,7 +1,7 @@
 import React from 'react'
-
+import {layout} from '../style'
 export const Footer = () => {
   return (
-    <div>Footer</div>
+    <div className={`${layout.footer}`}>Footer</div>
   )
 }
