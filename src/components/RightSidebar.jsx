@@ -1,8 +1,22 @@
 import React from 'react'
-import { layout } from '../style'
+import s,{ layout } from '../style'
+import {PiBuildings} from 'react-icons/pi'
 
 export const RightSidebar = () => {
   return (
-    <div className={`${layout.right_bar} bg-dark-1 `}>RightSidebar</div>
+    <div className={`${layout.right_bar}`}>
+      <div className={`${layout.right_sec1}`}>
+        <PiBuildings className={`${s.icon3}`}/>
+        <div className="text-sm">
+          Academy of Technology
+        </div>
+      </div>
+      <div className={`${layout.right_sec2}`}>
+
+      </div>
+      <div className={`${layout.right_sec2}`}>
+
+      </div>
+    </div>
   )
 }
