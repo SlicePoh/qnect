@@ -55,6 +55,8 @@ export const layout = {
     likes: `${styles.flexBetween} rounded-lg bg-dark-3 w-full h-12 p-4 `,
     
     bord: `mx-4 ${styles.flexCenter} ${styles.borderS} p-1 text-sm `,
+    
+    //bord: `mx-4 ${styles.flexCenter} ${styles.borderS} p-1 text-sm `,
 };
   
 export default styles;
