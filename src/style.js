@@ -40,7 +40,7 @@ export const layout = {
     ans: `${styles.flexCenter} rounded-lg bg-dark-1 w-7/12 h-80 my-2 `,
 
     route: ` ${styles.flexSS} w-72 h-16 px-8 text-beige text-xl hover:bg-rose-2 hover:w-[300px] hover:text-white hover:border-r-8 hover:border-rose-1 `,
-    bord: `mx-4 ${styles.flexCenter} ${styles.borderS} p-1 text-sm `,
+    //bord: `mx-4 ${styles.flexCenter} ${styles.borderS} p-1 text-sm `,
 };
   
 export default styles;
