@@ -5,6 +5,8 @@ import { Home } from './pages/Home'
 import { Following } from './pages/Following'
 import { Spaces } from './pages/Spaces'
 import { Jobs } from './pages/Jobs'
+import { Login } from './pages/Login'
+import { Register } from './pages/Register'
 import { Public } from './pages/Public'
 import { Competitions } from './pages/Competitions'
 import { Mentorships } from './pages/Mentorships'
@@ -18,7 +20,11 @@ function App() {
   return (
     <div className="text-white">
       <Router>
-      <Navbar/>
+        <Navbar/>
+        <Routes>
+          <Route exact path="/login" element={<Login/>} />
+          <Route exact path="/register" element={<Register/>} />
+        </Routes>
         <LeftSidebar/> 
         <Routes>  
           <Route exact path="/" element={<Home/>} />
