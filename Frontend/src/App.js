@@ -18,13 +18,13 @@ import {
 
 function App() {
   return (
-    <div className="text-white">
+    <div className="text-white ">
       <Router>
-        <Navbar/>
         <Routes>
           <Route exact path="/login" element={<Login/>} />
           <Route exact path="/register" element={<Register/>} />
         </Routes>
+        <Navbar/>
         <LeftSidebar/> 
         <Routes>  
           <Route exact path="/" element={<Home/>} />

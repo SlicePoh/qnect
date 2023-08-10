@@ -7,7 +7,7 @@ export const RightSidebar = () => {
     <div className={`${layout.right_bar}`}>
       <div className={`${layout.right_sec1}`}>
         <PiBuildings className={`${s.icon3}`}/>
-        <div className="text-sm">
+        <div className="text-xs xl:text-sm">
           Academy of Technology
         </div>
       </div>
