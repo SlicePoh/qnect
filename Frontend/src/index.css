@@ -12,3 +12,21 @@ body{
   //font-family: 'Kulim Park', sans-serif;
   font-family: 'Poppins', sans-serif;
 }
+
+::-webkit-scrollbar {
+  width: 1rem;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background: #102A3D;
+  transition: all 0.5s ease-in-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #001C30;
+}
+
+::-webkit-scrollbar-track {
+  background: #000B13;
+}

@@ -17,6 +17,9 @@ export const RightSidebar = () => {
       <div className={`${layout.right_sec2}`}>
 
       </div>
+      <div className={`${layout.right_sec2}`}>
+
+      </div>
     </div>
   )
 }

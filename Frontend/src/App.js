@@ -5,8 +5,8 @@ import { Home } from './pages/Home'
 import { Following } from './pages/Following'
 import { Spaces } from './pages/Spaces'
 import { Jobs } from './pages/Jobs'
-import { Login } from './pages/Login'
-import { Register } from './pages/Register'
+import { Login } from './pages/auth/Login'
+import { Register } from './pages/auth/Register'
 import { Public } from './pages/Public'
 import { Competitions } from './pages/Competitions'
 import { Mentorships } from './pages/Mentorships'
@@ -15,6 +15,10 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import { Reset } from './pages/auth/Reset'
+import { Allset } from './pages/auth/Allset'
+import { Verify } from './pages/auth/Verify'
+import { Forgot } from './pages/auth/Forgot'
 
 function App() {
   return (
@@ -23,6 +27,10 @@ function App() {
         <Routes>
           <Route exact path="/login" element={<Login/>} />
           <Route exact path="/register" element={<Register/>} />
+          <Route exact path="/reset" element={<Reset/>} />
+          <Route exact path="/allset" element={<Allset/>} />
+          <Route exact path="/verify" element={<Verify/>} />
+          <Route exact path="/forgot" element={<Forgot/>} />
         </Routes>
         <Navbar/>
         <LeftSidebar/> 
