@@ -9,12 +9,20 @@
 }
 
 body{
-  //font-family: 'Kulim Park', sans-serif;
   font-family: 'Poppins', sans-serif;
 }
 
+.font-kulim{
+  font-family: 'Kulim Park', sans-serif;
+}
+
+.text-2xs{
+  font-size: 0.575rem;
+  line-height: 1rem;
+}
+
 ::-webkit-scrollbar {
-  width: 1rem;
+  width: 0.8rem;
 }
 
 ::-webkit-scrollbar-thumb {

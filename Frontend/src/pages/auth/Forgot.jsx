@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import forgotpassword from '../assets/ForgotPassword.svg';
 
-const Forgot = ({ togglePage }) => {
+export const Forgot = ({ togglePage }) => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
 
@@ -63,5 +63,3 @@ const Forgot = ({ togglePage }) => {
     </div>
   );
 };
-
-export default Forgot;

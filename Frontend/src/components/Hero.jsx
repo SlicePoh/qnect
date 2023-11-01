@@ -11,7 +11,7 @@ export const Hero = () => {
           <img src={beb} alt="beb" className="w-12 h-auto rounded-full " />
         </button>
         <div className={`w-11/12 `}>
-          <input placeholder="what are your doubts today?" className=" outline-none px-4 rounded-lg w-full h-12 bg-dark-3 " />
+          <input placeholder="what are your doubts today?" className={`${s.search_text1} `} />
         </div>
       </div>
       <AnswerCard/>

@@ -26,26 +26,26 @@ export const AnswerCard = () => {
             </div>
             <div className={`${layout.deets}`}>
                 <button>
-                    <img src={beb} alt="profile" className="w-14 h-auto rounded-full"></img>
+                    <img src={beb} alt="profile" className="w-8 md:w-14 h-auto rounded-full"></img>
                 </button>
-                <div className={`${s.flexSS} flex-col w-full ml-4`}>
+                <div className={`${s.flexSS} flex-col w-full ml-2 md:ml-4`}>
                     <div className={`${s.flexBetween} w-full`}>
                         <div className={`${s.flexCenter}`}>
-                            <div className="md:text-xl text-rose-1 font-bold">
+                            <div className="text-sm md:text-xl text-rose-1 font-bold">
                                 Jaydeep Debnath
                             </div>
-                            <MdVerified className="text-rose-1 mx-1 text-2xl" />
+                            <MdVerified className="text-rose-1 mx-1 text-base md:text-2xl" />
                             {isFollow ? (
-                                <div className={`${s.flexCenter} ml-5`}>
+                                <div className={`${s.flexCenter} ml-2 md:ml-5`}>
                                     <GoDotFill className="text-beige" />
-                                    <button onClick={()=>setIsFollow(!isFollow)} className="text-beige text-xl">
+                                    <button onClick={()=>setIsFollow(!isFollow)} className="text-beige text-sm md:text-xl">
                                         Following
                                     </button>
                                 </div>
                             ) : (
-                                <div className={`${s.flexCenter} ml-5`}>
+                                <div className={`${s.flexCenter} ml-2 md:ml-5`}>
                                     <GoDotFill className="text-blue-700" />
-                                    <button onClick={()=>setIsFollow(!isFollow)} className="text-blue-700 text-xl">
+                                    <button onClick={()=>setIsFollow(!isFollow)} className="text-blue-700 text-sm md:text-xl">
                                         Follow
                                     </button>
                                 </div>
@@ -56,12 +56,12 @@ export const AnswerCard = () => {
                         </button> */}
                     </div>
                     <div className={`${s.flexBetween} w-full`}>
-                        <div className="text-xs md:text-sm text-rose-2 font-bold">
+                        <div className="text-2xs md:text-sm text-rose-2 font-bold">
                             4th year CSE from Academy of Technology
                         </div>
-                        <div className={`${s.flexCenter}`}>
+                        <div className={`${s.flexCenter} w-24`}>
                             <GoDotFill className="text-beige" />
-                            <div className="text-beige text-sm">
+                            <div className="text-beige text-2xs md:text-sm">
                                 5 days ago
                             </div>
                         </div>
@@ -119,7 +119,7 @@ export const AnswerCard = () => {
                         2
                     </div>
                 </div>
-                <button >
+                <button>
                     <SlOptionsVertical className={`${s.icon6}`}/>
                 </button>
             </div>

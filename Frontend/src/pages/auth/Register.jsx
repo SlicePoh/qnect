@@ -5,7 +5,7 @@ import { FcGoogle } from 'react-icons/fc';
 import iconfacebook from '../assets/icon_facebook.svg';
 import icongithub from '../assets/icon_github.svg';
 
-const Register = ({ togglePage }) => {
+export const Register = ({ togglePage }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -112,5 +112,4 @@ const Register = ({ togglePage }) => {
   );
 };
 
-export default Register;
 

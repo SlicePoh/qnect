@@ -21,9 +21,9 @@ export const Navbar = () => {
       </div>
       
       <div className={`${s.flexCenter}`}>
-        <div className={`${s.flexCenter} px-2 mr-4 rounded-lg w-40 md:w-80 h-10 bg-dark-3`}>
+        <div className={`${s.flexCenter} hidden sm:flex px-2 mr-4 rounded-lg w-40 md:w-80 h-10 bg-dark-3`}>
           <BiSearchAlt className={`${s.icon2}`}/>
-          <input placeholder="Search Qnect" className=" bg-dark-3 placeholder-beige rounded-lg h-10 outline-none w-full p-1 "/>
+          <input placeholder="Search Qnect" className={`${s.search_text}`}/>
         </div>
         <button>
           <PiChatCircleTextBold className={`${s.icon2}`}/>

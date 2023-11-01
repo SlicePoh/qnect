@@ -11,7 +11,12 @@ module.exports = {
         'dark-3': '#102A3D',
         'rose-1': '#FB2576',
         'rose-2': '#B85C81',
+        'rose-3': '#712D47',
         'beige': '#87737B',
+      },
+      fontFamily: {
+        'poppins': ['Poppins', 'sans-serif'],
+        'kulim': ['Kulim Park', 'sans-serif'],
       },
     },
   },
