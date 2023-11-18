@@ -1,40 +1,57 @@
-import React from 'react'
-import s, {layout} from '../style'
-import {BiSearchAlt,BiBell} from 'react-icons/bi'
-import {PiChatCircleTextBold} from 'react-icons/pi'
+import React, { useState } from 'react'
+import s, { layout } from '../style'
+import { BiSearchAlt, BiBell } from 'react-icons/bi'
+import { PiChatCircleTextBold } from 'react-icons/pi'
 import beb from '../assets/bebnath.jpg'
 import { RxHamburgerMenu } from 'react-icons/rx'
-
+import logo from '../assets/logo.png'
+import { Link } from 'react-router-dom'
 export const Navbar = () => {
-
-  const openProfile=()=>{
+  const [searchOpen, setSearchOpen] = useState(false);
+  const openSearch = () => {
+    setSearchOpen(!searchOpen);
+  }
+  const openProfile = () => {
 
   }
 
   return (
     <div className={`${layout.navbar}`}>
-      <div className={`${s.flexCenter}`}>
-        <div className="flex md:hidden">
-          <RxHamburgerMenu className={`${s.icon2}`}/>
+      <div className={`${layout.navtop}`}>
+        <div className={`${s.flexCenter}`}>
+          <Link to="/">
+            <img src={logo} alt='logo' className={`${s.logo}`}></img>
+          </Link>
         </div>
-        <div className="text-rose-1 mx-2 text-2xl md:text-4xl font-bold">Qnect</div>
-      </div>
-      
-      <div className={`${s.flexCenter}`}>
-        <div className={`${s.flexCenter} hidden sm:flex px-2 mr-4 rounded-lg w-40 md:w-80 h-10 bg-dark-3`}>
-          <BiSearchAlt className={`${s.icon2}`}/>
-          <input placeholder="Search Qnect" className={`${s.search_text}`}/>
+
+        <div className={`${s.flexCenter}`}>
+          <button onClick={openSearch}>
+            <BiSearchAlt className={`${s.icon2} flex sm:hidden`} />
+          </button>
+          <div className={`${s.flexCenter} hidden sm:flex px-2 mr-4 rounded-lg w-40 md:w-80 h-10 bg-dark-3`}>
+            <BiSearchAlt className={`${s.icon2}`} />
+            <input placeholder="Search Qnect" className={`${s.search_text}`} />
+          </div>
+          <button>
+            <PiChatCircleTextBold className={`${s.icon2}`} />
+          </button>
+          <button>
+            <BiBell className={`${s.icon2}`} />
+          </button>
+          <button onClick={openProfile}>
+            <img src={beb} alt="profile" className={`${s.profile}`}></img>
+          </button>
+          <div className="flex md:hidden">
+            <RxHamburgerMenu className={`${s.icon2}`} />
+          </div>
         </div>
-        <button>
-          <PiChatCircleTextBold className={`${s.icon2}`}/>
-        </button>
-        <button>
-          <BiBell className={`${s.icon2}`}/>
-        </button>
-        <button onClick={openProfile}>
-          <img src={beb} alt="profile" className="w-12 h-auto rounded-full"></img>
-        </button>
       </div>
+      {searchOpen ? (
+        <input placeholder="Search Qnect" className={`${s.search_text1} `} />
+      ):(
+        <div className=""></div>
+      )}
+
     </div>
   )
 }

@@ -7,12 +7,12 @@ export const Hero = () => {
   return (
     <div className={`${layout.hero} `}>
       <div className={`${layout.ask}`}>
-        <button className='w-1/12'>
-          <img src={beb} alt="beb" className="w-12 h-auto rounded-full " />
+        <button>
+          <img src={beb} alt="beb" className={`${s.profile} mr-8`}/>
         </button>
-        <div className={`w-11/12 `}>
-          <input placeholder="what are your doubts today?" className={`${s.search_text1} `} />
-        </div>
+       
+        <input placeholder="what are your doubts today?" className={`${s.doubts_text} `} />
+       
       </div>
       <AnswerCard/>
       <AnswerCard/>

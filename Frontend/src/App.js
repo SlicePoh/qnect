@@ -19,6 +19,7 @@ import { Reset } from './pages/auth/Reset'
 import { Allset } from './pages/auth/Allset'
 import { Verify } from './pages/auth/Verify'
 import { Forgot } from './pages/auth/Forgot'
+import { MobileNav } from './components/MobileNav'
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           <Route exact path="/mentorships" element={<Mentorships/>}/>
         </Routes>
         <RightSidebar/>
+        <MobileNav/>
       </Router>
 
     </div>
