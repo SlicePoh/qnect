@@ -46,10 +46,8 @@ export const Navbar = () => {
           </div>
         </div>
       </div>
-      {searchOpen ? (
-        <input placeholder="Search Qnect" className={`${s.search_text1} `} />
-      ):(
-        <div className=""></div>
+      {searchOpen && (
+        <input layout placeholder="Search Qnect" className={`${s.search_text1} `} />
       )}
 
     </div>

@@ -1,9 +1,9 @@
 
 import React, { useState } from 'react';
-import signup from '../assets/SignUp.svg';
+import signup from '../../assets/auth/SignUp.svg';
 import { FcGoogle } from 'react-icons/fc';
-import iconfacebook from '../assets/icon_facebook.svg';
-import icongithub from '../assets/icon_github.svg';
+import iconfacebook from '../../assets/auth/icon_facebook.svg';
+import icongithub from '../../assets/auth/icon_github.svg';
 
 export const Register = ({ togglePage }) => {
   const [formData, setFormData] = useState({

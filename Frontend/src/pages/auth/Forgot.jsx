@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import forgotpassword from '../assets/ForgotPassword.svg';
+import forgotpassword from '../../assets/auth/ForgotPassword.svg';
 
 export const Forgot = ({ togglePage }) => {
   const [email, setEmail] = useState('');
