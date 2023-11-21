@@ -11,9 +11,6 @@ export const Navbar = () => {
   const openSearch = () => {
     setSearchOpen(!searchOpen);
   }
-  const openProfile = () => {
-
-  }
 
   return (
     <div className={`${layout.navbar}`}>
@@ -32,15 +29,15 @@ export const Navbar = () => {
             <BiSearchAlt className={`${s.icon2}`} />
             <input placeholder="Search Qnect" className={`${s.search_text}`} />
           </div>
-          <button>
+          <Link to="/messages">
             <PiChatCircleTextBold className={`${s.icon2}`} />
-          </button>
+          </Link>
           <button>
             <BiBell className={`${s.icon2}`} />
           </button>
-          <button onClick={openProfile}>
-            <img src={beb} alt="profile" className={`${s.profile}`}></img>
-          </button>
+          <Link to="/profile">
+            <img src={beb} alt="profile" className={`${s.profilePic}`}></img>
+          </Link>
           <div className="flex md:hidden">
             <RxHamburgerMenu className={`${s.icon2}`} />
           </div>

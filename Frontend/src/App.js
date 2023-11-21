@@ -20,8 +20,12 @@ import { Allset } from './pages/auth/Allset'
 import { Verify } from './pages/auth/Verify'
 import { Forgot } from './pages/auth/Forgot'
 import { MobileNav } from './components/MobileNav'
+import { Profile } from './pages/Profile'
+import { Messages } from './pages/Messages'
+
 
 function App() {
+
   return (
     <div className="text-white ">
       <Router>
@@ -43,6 +47,8 @@ function App() {
           <Route exact path="/public" element={<Public/>}/>
           <Route exact path="/comp" element={<Competitions/>} />
           <Route exact path="/mentorships" element={<Mentorships/>}/>
+          <Route exact path="/profile" element={<Profile/>} />
+          <Route exact path="/messages" element={<Messages/>} />
         </Routes>
         <RightSidebar/>
         <MobileNav/>

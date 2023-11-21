@@ -8,7 +8,7 @@ const styles = {
     flexBB: "flex justify-center items-start",
     
     logo: "w-12 md:w-14 h-auto",
-    profile: "w-10 md:w-12 h-10 md:h-12 rounded-full mr-2",
+    profilePic: "w-10 md:w-12 h-10 md:h-12 rounded-full mr-2",
 
     icon: "text-white text-2xl xl:text-3xl mr-2 ",
     icon2: "text-white text-xl md:text-2xl mr-2 ",
@@ -16,7 +16,7 @@ const styles = {
     icon4: "text-rose-2 text-xl mx-2 md:mx-4 ",
     icon5: "text-rose-1 text-2xl xl:text-3xl mr-2 ",
     icon6: "text-rose-1 text-xl mx-2 md:mx-4 ",
-    icon7: "text-white text-lg md:text-xl mr-2 ",
+    icon7: "text-white text-base md:text-xl mr-2 ",
     
     
     search_text: "bg-dark-3 placeholder-beige font-kulim rounded-lg h-10 outline-none w-full p-1",
@@ -32,7 +32,7 @@ const styles = {
 
     hero: "flex-col bg-dark-2 min-h-screen w-full",
     
-    modal: "z-20 fixed flex-col rounded-lg w-56 pt-2 md:pt-4 bg-rose-1/90 text-white",
+    modal: "z-20 absolute flex-col rounded-lg w-56 pt-2 md:pt-4 bg-rose-1/90 text-white translate-y-24",
     emoji: "z-20 absolute flex-col rounded-lg ",
 
     divVerL: "border-x-2 border-biege h-screen p-4",
@@ -54,7 +54,7 @@ export const layout = {
     footer: `${styles.flexSS} flex-col bg-dark-1 h-20 w-full bottom-0 text-white w-full md:w-7/12 `,
 
     route: ` ${styles.flexSS} w-full h-16 px-4 xl:px-8 text-beige text-base xl:text-xl hover:bg-rose-3 hover:w-full hover:text-white hover:border-r-8 hover:border-rose-1 `,
-    info: ` ${styles.flexSS} w-full h-14 px-4  hover:bg-rose-1  `,
+    info: ` ${styles.flexSS} w-full h-14 px-4 rounded-b-lg hover:bg-rose-1  `,
     
     right_sec1: `${styles.flexCenter} rounded-lg bg-dark-2 w-5/6 h-16 my-2 `,
     right_sec2: `${styles.flexCenter} rounded-lg bg-dark-2 w-5/6 h-40 my-2 `,

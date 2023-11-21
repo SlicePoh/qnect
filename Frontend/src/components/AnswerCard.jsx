@@ -13,40 +13,27 @@ import { ShareCard } from './modals/ShareCard'
 import { MoreInfo } from './modals/MoreInfo'
 import EmojiPicker from 'emoji-picker-react';
 
-export const AnswerCard = () => {
-    const [isFollow, setIsFollow] = useState(false)
-    const [like, setLike] = useState(false)
-    const [comment, setComment] = useState(false)
-    const [share, setShare] = useState(false)
-    const [options, setOptions] = useState(false)
-    const [save, setSave] = useState(false);
-    const [isSeeMore, setIsSeeMore] = useState(false);
-    const [emoji, setEmoji] = useState(false);
 
+
+export const AnswerCard = () => {
+    const initialState = {
+        isFollow: false,
+        like: false,
+        comment: false,
+        share: false,
+        options: false,
+        save: false,
+        isSeeMore: false,
+        emoji: false,
+    };
+    const [state, setState] = useState(initialState);
+    const { isFollow, like, comment, share, options, save, isSeeMore, emoji } = state;
+
+    const toggleState = (key) => {
+        setState((prevState) => ({ ...prevState, [key]: !prevState[key] }));
+    };
     const ans_text = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa nemo ipsum quis tempora dolorum? Molestias saepe doloremque, enim quidem minus iusto cupiditate deserunt rerum pariatur voluptate ipsam? Quos vel ipsum ad velit at quidem, iste, nemo animi dolorum corporis maxime quisquam dignissimos? A doloremque labore facere voluptatem maxime quasi quia iure, ipsum tempore reprehenderit illo, incidunt reiciendis esse blanditiis modi";
     const que_text = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam asperiores ut odio, voluptate impedit repudiandae veritatis id?";
-
-    const handleLike = () => {
-        setLike(!like);
-    }
-    const handleComment = () => {
-        setComment(!comment);
-    }
-    const seeMore = () => {
-        setIsSeeMore(!isSeeMore);
-    }
-    const handleShare = () => {
-        setShare(!share)
-    }
-    const handleOptions = () => {
-        setOptions(!options)
-    }
-    const handleSave = () => {
-        setSave(!save);
-    }
-    const handleEmoji = () => {
-        setEmoji(!emoji);
-    }
 
     return (
         <div className={`${layout.ans}`}>
@@ -55,7 +42,7 @@ export const AnswerCard = () => {
                     {(que_text.length > 100 && isSeeMore) ? (
                         <div className="">
                             {que_text.slice(0, 100)}
-                            <button onClick={seeMore} className="text-rose-1 font-bold">...(more)</button>
+                            <button onClick={() => toggleState('isSeeMore')} className="text-rose-1 font-bold">...(more)</button>
                         </div>
                     ) : (
                         <div>
@@ -81,14 +68,14 @@ export const AnswerCard = () => {
                             {isFollow ? (
                                 <div className={`${s.flexCenter} ml-2 md:ml-5`}>
                                     <GoDotFill className="text-beige" />
-                                    <button onClick={() => setIsFollow(!isFollow)} className="text-beige text-sm md:text-xl">
+                                    <button onClick={() => toggleState('isFollow')} className="text-beige text-sm md:text-xl">
                                         Following
                                     </button>
                                 </div>
                             ) : (
                                 <div className={`${s.flexCenter} ml-2 md:ml-5`}>
                                     <GoDotFill className="text-blue-700" />
-                                    <button onClick={() => setIsFollow(!isFollow)} className="text-blue-700 text-sm md:text-xl">
+                                    <button onClick={() => toggleState('isFollow')} className="text-blue-700 text-sm md:text-xl">
                                         Follow
                                     </button>
                                 </div>
@@ -137,7 +124,7 @@ export const AnswerCard = () => {
             </div>
             <div className={`${layout.likes}`}>
                 <div className={`${s.flexCenter}`}>
-                    <button onClick={handleLike}>
+                    <button onClick={() => toggleState('like')}>
                         {!like ? (
                             <RiHeart2Line className={`${s.icon4}`} />
                         ) : (
@@ -147,7 +134,7 @@ export const AnswerCard = () => {
                     <div className={`${s.likes_num}`}>
                         20
                     </div>
-                    <button onClick={handleComment}>
+                    <button onClick={() => toggleState('comment')}>
                         <BiCommentDetail className={`${s.icon4}`} />
                     </button>
                     <div className={`${s.likes_num}`}>
@@ -159,24 +146,24 @@ export const AnswerCard = () => {
                     <div className={`${s.likes_num}`}>
                         34
                     </div>
-                    <button onClick={handleShare}>
+                    <button onClick={() => toggleState('share')}>
                         <BiShare className={`${s.icon4}`} />
                     </button>
                     <div className={`${s.likes_num}`}>
                         2
                     </div>
                 </div>
-                <button onClick={handleOptions}>
+                <button onClick={() => toggleState('options')}>
                     <SlOptionsVertical className={`${s.icon6}`} />
                 </button>
             </div>
             {comment && (
                 <div className={`${layout.comments}`}>
                     <div className={`${layout.myComments}`}>
-                        <img src={beb} alt="myicon" className={`${s.profile}`} />
+                        <img src={beb} alt="myicon" className={`${s.profilePic}`} />
                         <div className={`${layout.comments_button}`}>
                             <input placeholder="Add a comment..." type="text" className={`${s.comments_text}`} />
-                            <button onClick={handleEmoji}>
+                            <button onClick={() => toggleState('emoji')}>
                                 <FaRegFaceLaugh className={`${s.icon7}`} />
                             </button>
                             <button>
@@ -191,10 +178,10 @@ export const AnswerCard = () => {
                 <EmojiPicker theme='dark' className={`${s.emoji}`} />
             )}
             {share && (
-                <ShareCard handleShare={handleShare} />
+                <ShareCard handleShare={() => toggleState('share')} />
             )}
             {options && (
-                <MoreInfo handleOptions={handleOptions} handleSave={handleSave} save={save} />
+                <MoreInfo handleOptions={() => toggleState('options')} handleSave={() => toggleState('save')} save={save} />
             )}
         </div>
     )
