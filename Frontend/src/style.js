@@ -33,6 +33,7 @@ const styles = {
     hero: "flex-col bg-dark-2 min-h-screen w-full",
     
     modal: "z-20 fixed flex-col rounded-lg w-56 pt-2 md:pt-4 bg-rose-1/90 text-white",
+    emoji: "z-20 absolute flex-col rounded-lg ",
 
     divVerL: "border-x-2 border-biege h-screen p-4",
     divVerR: "border-x-2 border-biege h-screen p-4",
@@ -53,7 +54,7 @@ export const layout = {
     footer: `${styles.flexSS} flex-col bg-dark-1 h-20 w-full bottom-0 text-white w-full md:w-7/12 `,
 
     route: ` ${styles.flexSS} w-full h-16 px-4 xl:px-8 text-beige text-base xl:text-xl hover:bg-rose-3 hover:w-full hover:text-white hover:border-r-8 hover:border-rose-1 `,
-    info: ` ${styles.flexSS} w-full h-16 px-4  hover:bg-rose-1  `,
+    info: ` ${styles.flexSS} w-full h-14 px-4  hover:bg-rose-1  `,
     
     right_sec1: `${styles.flexCenter} rounded-lg bg-dark-2 w-5/6 h-16 my-2 `,
     right_sec2: `${styles.flexCenter} rounded-lg bg-dark-2 w-5/6 h-40 my-2 `,
@@ -68,7 +69,7 @@ export const layout = {
     comments_button: `${styles.flexCenter} flex-row rounded-full border-2 border-beige w-full gap-1 md:gap-2 pr-3`,
     myComments: `${styles.flexBetween} flex-row w-full`,
     
-    moreInfo: `${styles.modal} ${styles.flexSS} h-auto text-center text-sm md:text-lg `,
+    moreInfo: `${styles.modal} ${styles.flexSS} h-auto text-center text-sm md:text-base `,
     shareCard: `${styles.modal} ${styles.flexSS} h-40 text-center`,
 
     bord: `mx-4 ${styles.flexCenter} ${styles.borderS} p-1 text-sm `,

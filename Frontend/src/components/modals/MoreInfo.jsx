@@ -12,18 +12,18 @@ export const MoreInfo = ({ handleOptions, handleSave,save }) => {
             </button>
             <button onClick={handleSave} className={`${layout.info}`}>
                 {!save ?(
-                    <FaBookmark className={`${s.icon2}`} />
+                    <FaBookmark className={`${s.icon7}`} />
                 ):(
-                    <FaRegBookmark className={`${s.icon2}`} />
+                    <FaRegBookmark className={`${s.icon7}`} />
                 )}
                 Save Post
             </button>
             <button className={`${layout.info}`}>
-                <FiLink className={`${s.icon2}`} />
+                <FiLink className={`${s.icon7}`} />
                 Copy Link
             </button>
             <button className={`${layout.info}`}>
-                <FiFlag className={`${s.icon2}`} />
+                <FiFlag className={`${s.icon7}`} />
                 Report
             </button>
 

@@ -188,7 +188,7 @@ export const AnswerCard = () => {
                 </div>
             )}
             {emoji && (
-                <EmojiPicker theme='dark' className={`${s.modal}`} />
+                <EmojiPicker theme='dark' className={`${s.emoji}`} />
             )}
             {share && (
                 <ShareCard handleShare={handleShare} />
