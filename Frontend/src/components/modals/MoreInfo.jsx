@@ -11,10 +11,10 @@ export const MoreInfo = ({ handleOptions, handleSave,save }) => {
                 <RxCross2 />
             </button>
             <button onClick={handleSave} className={`${layout.info}`}>
-                {!save ?(
-                    <FaBookmark className={`${s.icon7}`} />
-                ):(
+                {save ?(
                     <FaRegBookmark className={`${s.icon7}`} />
+                ):(
+                    <FaBookmark className={`${s.icon7}`} />
                 )}
                 Save Post
             </button>

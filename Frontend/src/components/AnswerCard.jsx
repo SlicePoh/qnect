@@ -74,8 +74,8 @@ export const AnswerCard = () => {
                                 </div>
                             ) : (
                                 <div className={`${s.flexCenter} ml-2 md:ml-5`}>
-                                    <GoDotFill className="text-blue-700" />
-                                    <button onClick={() => toggleState('isFollow')} className="text-blue-700 text-sm md:text-xl">
+                                    <GoDotFill className="text-blue-1" />
+                                    <button onClick={() => toggleState('isFollow')} className="text-blue-1 text-sm md:text-xl">
                                         Follow
                                     </button>
                                 </div>

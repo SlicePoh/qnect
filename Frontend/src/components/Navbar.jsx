@@ -29,13 +29,13 @@ export const Navbar = () => {
             <BiSearchAlt className={`${s.icon2}`} />
             <input placeholder="Search Qnect" className={`${s.search_text}`} />
           </div>
-          <Link to="/messages">
+          <Link to="/single/messages">
             <PiChatCircleTextBold className={`${s.icon2}`} />
           </Link>
           <button>
             <BiBell className={`${s.icon2}`} />
           </button>
-          <Link to="/profile">
+          <Link to="/single/profile">
             <img src={beb} alt="profile" className={`${s.profilePic}`}></img>
           </Link>
           <div className="flex md:hidden">

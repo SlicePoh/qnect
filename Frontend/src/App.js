@@ -1,61 +1,61 @@
-import { Navbar } from './components/Navbar'
-import { LeftSidebar } from './components/LeftSidebar'
-import { RightSidebar } from './components/RightSidebar'
-import { Home } from './pages/Home'
-import { Following } from './pages/Following'
-import { Spaces } from './pages/Spaces'
-import { Jobs } from './pages/Jobs'
-import { Login } from './pages/auth/Login'
-import { Register } from './pages/auth/Register'
-import { Public } from './pages/Public'
-import { Competitions } from './pages/Competitions'
-import { Mentorships } from './pages/Mentorships'
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route
-} from "react-router-dom";
-import { Reset } from './pages/auth/Reset'
-import { Allset } from './pages/auth/Allset'
-import { Verify } from './pages/auth/Verify'
-import { Forgot } from './pages/auth/Forgot'
-import { MobileNav } from './components/MobileNav'
-import { Profile } from './pages/Profile'
-import { Messages } from './pages/Messages'
+import { Home } from "./pages/public/Home";
+import { Following } from "./pages/public/Following";
+import { Spaces } from "./pages/public/Spaces";
+import { Jobs } from "./pages/public/Jobs";
+import { Login } from "./pages/auth/Login";
+import { Register } from "./pages/auth/Register";
+import { Public } from "./pages/public/Public";
+import { Competitions } from "./pages/public/Competitions";
+import { Mentorships } from "./pages/public/Mentorships";
+import { Reset } from "./pages/auth/Reset";
+import { Allset } from "./pages/auth/Allset";
+import { Verify } from "./pages/auth/Verify";
+import { Forgot } from "./pages/auth/Forgot";
+import { Profile } from "./pages/single/Profile";
+import { Messages } from "./pages/single/Messages";
+import { Error } from "./pages/single/Error";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Single from "./layouts/Single";
+import Main from "./layouts/Main";
+import { Auth } from "./layouts/Auth";
 
-
-function App() {
-
+function App () {
   return (
-    <div className="text-white ">
+    <div>
       <Router>
         <Routes>
-          <Route exact path="/login" element={<Login/>} />
-          <Route exact path="/register" element={<Register/>} />
-          <Route exact path="/reset" element={<Reset/>} />
-          <Route exact path="/allset" element={<Allset/>} />
-          <Route exact path="/verify" element={<Verify/>} />
-          <Route exact path="/forgot" element={<Forgot/>} />
-        </Routes>
-        <Navbar/>
-        <LeftSidebar/> 
-        <Routes>  
-          <Route exact path="/" element={<Home/>} />
-          <Route exact path="/following" element={<Following/>} />
-          <Route exact path="/spaces" element={<Spaces/>} />
-          <Route exact path="/jobs" element={<Jobs/>} />
-          <Route exact path="/public" element={<Public/>}/>
-          <Route exact path="/comp" element={<Competitions/>} />
-          <Route exact path="/mentorships" element={<Mentorships/>}/>
-          <Route exact path="/profile" element={<Profile/>} />
-          <Route exact path="/messages" element={<Messages/>} />
-        </Routes>
-        <RightSidebar/>
-        <MobileNav/>
-      </Router>
+            <Route exact path="/auth" element={<Auth />}>
+                <Route path="/auth/Login" element={<Login/>}/>
+                <Route path="/auth/register" element={<Register />} />
+                <Route path="/auth/reset" element={<Reset />} />
+                <Route path="/auth/allset" element={<Allset />} />
+                <Route path="/auth/verify" element={<Verify />} />
+                <Route path="/auth/forgot" element={<Forgot />} />
+                <Route path="/auth/*" element={<Error/>} />
+            </Route>
 
+            <Route path="/" element={<Main />}>
+              <Route index element={<Home/>}/>
+              <Route path="/following" element={<Following />} />
+              <Route path="/spaces" element={<Spaces />} />
+              <Route path="/jobs" element={<Jobs />} />
+              <Route path="/public" element={<Public />} />
+              <Route path="/comp" element={<Competitions />} />
+              <Route path="/mentorships" element={<Mentorships />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/messages" element={<Messages />} />
+              <Route path="/*" element={<Error />} />
+            </Route>
+
+          <Route path="/single" element={<Single/>}>
+            <Route path="/single/profile" element={<Profile />} />
+            <Route path="/single/messages" element={<Messages />} />
+            <Route path="/single/*" element={<Error/>} />
+          </Route>
+        </Routes>
+      </Router>
     </div>
   );
-}
+};
 
 export default App;

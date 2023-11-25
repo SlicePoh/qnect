@@ -1,5 +1,5 @@
 import React from 'react'
-import { layout } from '../style'
+import { layout } from '../../style'
 
 export const Mentorships = () => {
   return (

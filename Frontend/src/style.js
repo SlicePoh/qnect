@@ -27,7 +27,7 @@ const styles = {
     skills: "w-full my-1 text-center text-xs p-2 bg-dark-3 rounded-lg",
     likes_num: "text-sm md:text-lg text-beige mx-1 md:mx-2",
     
-    right_side: "float-right bottom-20 top-20 right-0 fixed bg-dark-1 h-screen w-1/5 hidden md:flex",
+    right_side: "float-right bottom-20 top-20 right-0 fixed bg-dark-1 min-h-screen w-1/5 hidden md:flex",
     left_side: "float-left bottom-20 top-20 left-0 fixed h-screen w-1/5 py-6 hidden md:flex",
 
     hero: "flex-col bg-dark-2 min-h-screen w-full",
@@ -44,20 +44,20 @@ export const layout = {
     left_bar: ` ${styles.flexSS} bg-dark-1 flex-col ${styles.left_side}`,
     right_bar: `${styles.right_side} ${styles.flexSS} flex-col `,
 
-    navbar: `${styles.flexCenter} flex-col bg-dark-1 h-auto sm:h-20 w-full py-4 sm:py-0 fixed pl-6 pr-2 md:px-8`,
+    navbar: `${styles.flexCenter} flex-col z-20 bg-dark-1 h-auto sm:h-20 w-full py-4 sm:py-0 fixed pl-6 pr-2 md:px-8`,
     navtop: `${styles.flexBetween} w-full `,
     mobilenav: `${styles.flexBetween} flex md:hidden bg-dark-3 h-10 fixed bottom-0 w-full px-4`,
     
     hero: `${styles.flexSS} ${styles.hero} flex-col px-4 md:px-0`,
     ask: `${styles.flexBetween} rounded-xl bg-dark-1 w-full md:w-7/12 h-16 sm:h-20 mt-[94px] mb-2 p-2 sm:p-4 `,
     ans: `${styles.flexBetween} flex-col rounded-xl bg-dark-1 w-full md:w-7/12 h-auto my-2 `,
-    footer: `${styles.flexSS} flex-col bg-dark-1 h-20 w-full bottom-0 text-white w-full md:w-7/12 `,
+    footer: `${styles.flexSS} flex-col bg-dark-1 h-20 w-full fixed bottom-0 text-white w-full`,
 
     route: ` ${styles.flexSS} w-full h-16 px-4 xl:px-8 text-beige text-base xl:text-xl hover:bg-rose-3 hover:w-full hover:text-white hover:border-r-8 hover:border-rose-1 `,
     info: ` ${styles.flexSS} w-full h-14 px-4 rounded-b-lg hover:bg-rose-1  `,
     
-    right_sec1: `${styles.flexCenter} rounded-lg bg-dark-2 w-5/6 h-16 my-2 `,
-    right_sec2: `${styles.flexCenter} rounded-lg bg-dark-2 w-5/6 h-40 my-2 `,
+    right_sec1: `${styles.flexCenter} rounded-lg bg-dark-2 w-5/6 h-16 mt-2 `,
+    right_sec2: `${styles.flexStart} flex-col rounded-lg bg-dark-2 w-5/6 h-auto mt-2 p-3 gap-3`,
 
 
     deets: `${styles.flexSS} w-full px-4`,
@@ -71,6 +71,8 @@ export const layout = {
     
     moreInfo: `${styles.modal} ${styles.flexSS} h-auto text-center text-sm md:text-base `,
     shareCard: `${styles.modal} ${styles.flexSS} h-40 text-center`,
+
+    error: `${styles.flexCenter} text-center text-5xl h-screen md:text-7xl `,
 
     bord: `mx-4 ${styles.flexCenter} ${styles.borderS} p-1 text-sm `,
 };

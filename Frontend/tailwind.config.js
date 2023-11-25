@@ -13,6 +13,7 @@ module.exports = {
         'rose-2': '#B85C81',
         'rose-3': '#712D47',
         'beige': '#87737B',
+        'blue-1': '#0000FF',
       },
       fontFamily: {
         'poppins': ['Poppins', 'sans-serif'],
@@ -20,5 +21,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar'),
+  ],
 }
