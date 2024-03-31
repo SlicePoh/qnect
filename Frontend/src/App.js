@@ -24,27 +24,26 @@ function App () {
     <div>
       <Router>
         <Routes>
-            <Route exact path="/auth" element={<Auth />}>
-                <Route path="/auth/Login" element={<Login/>}/>
-                <Route path="/auth/register" element={<Register />} />
-                <Route path="/auth/reset" element={<Reset />} />
-                <Route path="/auth/allset" element={<Allset />} />
-                <Route path="/auth/verify" element={<Verify />} />
-                <Route path="/auth/forgot" element={<Forgot />} />
-                <Route path="/auth/*" element={<Error/>} />
+            <Route exact path="/" element={<Auth />}>
+                <Route index element={<Login/>}/>
+                {/* <Route path="/auth/login" element={<Login/>}/> */}
+                <Route path="/register" element={<Register />} />
+                <Route path="/reset" element={<Reset />} />
+                <Route path="/allset" element={<Allset />} />
+                <Route path="/verify" element={<Verify />} />
+                <Route path="/forgot" element={<Forgot />} />
+                <Route path="/*" element={<Error/>} />
             </Route>
 
-            <Route path="/" element={<Main />}>
+            <Route path="/main" element={<Main />}>
               <Route index element={<Home/>}/>
-              <Route path="/following" element={<Following />} />
-              <Route path="/spaces" element={<Spaces />} />
-              <Route path="/jobs" element={<Jobs />} />
-              <Route path="/public" element={<Public />} />
-              <Route path="/comp" element={<Competitions />} />
-              <Route path="/mentorships" element={<Mentorships />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/messages" element={<Messages />} />
-              <Route path="/*" element={<Error />} />
+              <Route path="/main/following" element={<Following />} />
+              <Route path="/main/spaces" element={<Spaces />} />
+              <Route path="/main/jobs" element={<Jobs />} />
+              <Route path="/main/public" element={<Public />} />
+              <Route path="/main/comp" element={<Competitions />} />
+              <Route path="/main/mentorships" element={<Mentorships />} />
+              <Route path="/main/*" element={<Error />} />
             </Route>
 
           <Route path="/single" element={<Single/>}>

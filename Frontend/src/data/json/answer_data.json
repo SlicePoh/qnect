@@ -1,0 +1,32 @@
+[
+    {
+        "_id": 1,
+        "question_id": 1,
+        "user_id": 3,
+        "body": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa nemo ipsum quis tempora dolorum? Molestias saepe doloremque, enim quidem minus iusto cupiditate deserunt rerum pariatur voluptate ipsam? Quos vel ipsum ad velit at quidem, iste, nemo animi dolorum corporis maxime quisquam dignissimos? A doloremque labore facere voluptatem maxime quasi quia iure, incidunt reiciendis esse blanditiis modi",
+        "upvotes": 20,
+        "downvotes": 4,
+        "created_at": "2024-03-30T09:24:14-05:00",
+        "updated_at": ""
+    },
+    {
+        "_id": 2,
+        "question_id": 1,
+        "user_id": 4,
+        "body": "Culpa nemo ipsum quis tempora dolorum? Molestias saepe doloremque, deserunt rerum pariatur voluptate ipsam? Quos vel ipsum ad velit at quidem, iste, nemo animi dolorum corporis maxime quisquam dignissimos? A doloremque labore facere voluptatem maxime quasi quia iure, ipsum tempore reprehenderit illo, incidunt reiciendis esse blanditiis modi",
+        "upvotes": 12,
+        "downvotes": 7,
+        "created_at": "2024-03-30T09:46:14-05:00",
+        "updated_at": ""
+    },
+    {
+        "_id": 3,
+        "question_id": 2,
+        "user_id": 5,
+        "body": " Molestias saepe doloremque, deserunt rerum pariatur voluptate ipsam? Culpa nemo ipsum quis tempora dolorum? Quos vel ipsum ad velit at quidem, iste, nemo animi dolorum corporis maxime quisquam dignissimos? A doloremque labore facere voluptatem maxime quasi quia iure, ipsum tempore reprehenderit illo, ipsum tempore reprehenderit illo, incidunt reiciendis esse blanditiis modi",
+        "upvotes": 34,
+        "downvotes": 11,
+        "created_at": "2024-03-30T12:13:14-05:00",
+        "updated_at": ""
+    }
+]

@@ -1,0 +1,162 @@
+[
+    {
+        "_id": 1,
+        "name": "Jaydeep Debnath",
+        "email": "debnathjaydeep05@gmail.com",
+        "password": "jaydeep@123",
+        "pic": "../assets/profiles/bebnath.jpg",
+        "college": "Academy of Technology",
+        "verified": false,
+        "department": "CSE",
+        "year": 4,
+        "bio": "Hi I'm chomp",
+        "followers": [4,5],
+        "following": [2,3,4,5],
+        "socials": [ 
+            {
+                "linkedin": "https://www.linkedin.com/in/jaydeep-debnath/"
+            },
+            {
+                "github": "https://github.com/Jaydeep-Debnath"
+            },
+            {
+                "portfolio": "https://jaydeep-debnath-portfolio.netlify.app/"
+            },
+            {
+                "twitter": ""
+            }
+        ],
+        "question_asked": [1],
+        "answers_given": [],
+        "created_at": "30-03-2024 11:10AM IST",
+        "updated_at": ""
+    },
+    {
+        "_id": 2,
+        "name": "Shanit Paul",
+        "email": "shanitpaul22@gmail.com",
+        "password": "shanit@123",
+        "pic": "../assets/profiles/shanit.jpg",
+        "college": "Academy of Technology",
+        "verified": true,
+        "department": "CSE",
+        "year": 4,
+        "bio": "Hi I'm shan",
+        "followers": [1],
+        "following": [5],
+        "socials": [ 
+            {
+                "linkedin": "https://www.linkedin.com/in/shanitpaul/"
+            },
+            {
+                "github": "https://github.com/SlicePoh"
+            },
+            {
+                "portfolio": "https://portfolio-shanit.netlify.app/"
+            },
+            {
+                "twitter": "https://twitter.com/slicepoh"
+            }
+        ],
+        "question_asked": [1],
+        "answers_given": [],
+        "created_at": "30-03-2024 11:15AM IST",
+        "updated_at": ""
+    },
+    {
+        "_id": 3,
+        "name": "Rayoti Kar",
+        "email": "rayoti707@gmail.com",
+        "password": "rayoti@123",
+        "pic": "../assets/profiles/rayoti.jpg",
+        "college": "Academy of Technology",
+        "verified": false,
+        "department": "CSE",
+        "year": 4,
+        "bio": "Hi I'm Rai",
+        "followers": [1],
+        "following": [2,4],
+        "socials": [ 
+            {
+                "linkedin": "https://www.linkedin.com/in/rayoti-kar/"
+            },
+            {
+                "github": "https://github.com/RayotiKar"
+            },
+            {
+                "portfolio": ""
+            },
+            {
+                "twitter": ""
+            }
+        ],
+        "question_asked": [1],
+        "answers_given": [],
+        "created_at": "30-03-2024 11:20AM IST",
+        "updated_at": ""
+    },
+    {
+        "_id": 4,
+        "name": "Dibyatanu Das",
+        "email": "ddibyatanu@gmail.com",
+        "password": "dibya@123",
+        "pic": "../assets/profiles/shanit.jpg",
+        "college": "Academy of Technology",
+        "verified": false,
+        "department": "CSE",
+        "year": 4,
+        "bio": "Hi I'm Rai",
+        "followers": [1,3],
+        "following": [1],
+        "socials": [ 
+            {
+                "linkedin": "https://www.linkedin.com/in/dibyatanu-das-42b446211/"
+            },
+            {
+                "github": "https://github.com/dibyatanu9088u"
+            },
+            {
+                "portfolio": ""
+            },
+            {
+                "twitter": ""
+            }
+        ],
+        "question_asked": [],
+        "answers_given": [1],
+        "created_at": "30-03-2024 11:20AM IST",
+        "updated_at": ""
+    },
+    {
+        "_id": 5,
+        "name": "Rishav Sarkar",
+        "email": "rishavsarkar3803@gmail.com",
+        "password": "rishav@123",
+        "pic": "../assets/profiles/shanit.jpg",
+        "college": "Academy of Technology",
+        "verified": true,
+        "department": "CSE",
+        "year": 4,
+        "bio": "Hi I'm Rishav",
+        "followers": [1,2],
+        "following": [1],
+        "socials": [ 
+            {
+                "linkedin": "https://www.linkedin.com/in/rishav-sarkar-7191a2250/"
+            },
+            {
+                "github": "https://github.com/RishavSarkar10"
+            },
+            {
+                "portfolio": ""
+            },
+            {
+                "twitter": ""
+            }
+        ],
+        "question_asked": [],
+        "answers_given": [1],
+        "created_at": "30-03-2024 11:20AM IST",
+        "updated_at": ""
+    }
+]

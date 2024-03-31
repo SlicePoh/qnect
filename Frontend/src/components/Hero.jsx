@@ -1,8 +1,10 @@
 import React from 'react'
 import s, { layout } from '../style'
 import { AnswerCard } from './AnswerCard'
-import beb from '../assets/bebnath.jpg'
-
+import beb from '../assets/profiles/bebnath.jpg'
+import users_data from '../data/json/user_data.json'
+import answers_data from '../data/json/answer_data.json'
+import questions_data from '../data/json/question_data.json'
 
 export const Hero = () => {
 
@@ -16,9 +18,14 @@ export const Hero = () => {
         <input placeholder="what are your doubts today?" className={`${s.doubts_text} `} />
        
       </div>
-      <AnswerCard/>
-      <AnswerCard/>
-      <AnswerCard/>
+      {questions_data.map((question) => (
+        <AnswerCard
+          key={question._id}
+          question={question}
+          answers={answers_data}
+          users={users_data}
+        />
+      ))}
    
     </div>
   )

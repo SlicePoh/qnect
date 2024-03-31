@@ -1,7 +1,7 @@
 import React from 'react'
 import s,{ layout } from '../style'
 import {PiBuildings} from 'react-icons/pi'
-import beb from '../assets/bebnath.jpg'
+import beb from '../assets/profiles/bebnath.jpg'
 
 export const RightSidebar = () => {
   return (

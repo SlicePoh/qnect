@@ -16,10 +16,10 @@ const questionsSchema=new Schema({
         type: Integer,
     },
     comments:{
-        type: Arrays,
+        type: Array,
     },
     answers:{
-        type: Arrays,
+        type: Array,
     },
 }, { timestamps: true})
 

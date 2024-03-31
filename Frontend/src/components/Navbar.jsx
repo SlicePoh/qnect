@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import s, { layout } from '../style'
 import { BiSearchAlt, BiBell } from 'react-icons/bi'
 import { PiChatCircleTextBold } from 'react-icons/pi'
-import beb from '../assets/bebnath.jpg'
+import beb from '../assets/profiles/bebnath.jpg'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import logo from '../assets/logo.png'
 import { Link } from 'react-router-dom'
@@ -16,7 +16,7 @@ export const Navbar = () => {
     <div className={`${layout.navbar}`}>
       <div className={`${layout.navtop}`}>
         <div className={`${s.flexCenter}`}>
-          <Link to="/">
+          <Link to="/main">
             <img src={logo} alt='logo' className={`${s.logo}`}></img>
           </Link>
         </div>
@@ -35,7 +35,7 @@ export const Navbar = () => {
           <button>
             <BiBell className={`${s.icon2}`} />
           </button>
-          <Link to="/single/profile">
+          <Link className="hidden md:block" to="/single/profile">
             <img src={beb} alt="profile" className={`${s.profilePic}`}></img>
           </Link>
           <div className="flex md:hidden">
@@ -44,7 +44,7 @@ export const Navbar = () => {
         </div>
       </div>
       {searchOpen && (
-        <input layout placeholder="Search Qnect" className={`${s.search_text1} `} />
+        <input placeholder="Search Qnect" className={`${s.search_text1} `} />
       )}
 
     </div>

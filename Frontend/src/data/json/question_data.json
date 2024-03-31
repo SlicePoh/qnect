@@ -1,0 +1,26 @@
+[
+    {
+        "_id": 1,
+        "title": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam asperiores ut odio, voluptate impedit repudiandae veritatis id?",
+        "user_id": 1,
+        "likes": 10,
+        "comments": ["Quisquam asperiores ut odio","voluptate impedit repudiandae"],
+        "answers": [1,2],
+        "views": 34,    
+        "shared": 0,
+        "created_at": "2024-03-30T08:56:14-05:00",
+        "updated_at": ""
+    },
+    {
+        "_id": 2,
+        "title": "Quisquam asperiores ut odio, Lorem ipsum dolor sit amet consectetur adipisicing elit voluptate impedit repudiandae veritatis id?",
+        "user_id": 2,
+        "likes": 13,
+        "comments": ["A doloremque labore facere","ipsum tempore reprehenderit"],
+        "answers": [3],
+        "views": 21,    
+        "shared": 0,
+        "created_at": "2024-03-30T09:01:14-05:00",
+        "updated_at": ""
+    }
+]

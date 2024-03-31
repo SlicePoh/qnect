@@ -32,26 +32,26 @@ const userSchema=new Schema({
         type: String,
     },
     year:{
-        type: Integer,
+        type: Date,
     },
     bio:{
         type: String,
     },
     followers:{
-        type: Arrays,
+        type: Array,
     },
     following:{
-        type: Arrays,
+        type: Array,
     },
     socials:{
-        type: Arrays,
+        type: Array,
     },
     questions_asked:{
-        type: Arrays,
+        type: Array,
       
     },
     answers_given:{
-        type: Arrays,
+        type: Array,
      
     },
 }, { timestamps: true})

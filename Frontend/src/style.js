@@ -7,11 +7,11 @@ const styles = {
     flexSS: "flex justify-start items-center",
     flexBB: "flex justify-center items-start",
     
-    logo: "w-12 md:w-14 h-auto",
+    logo: "w-10 md:w-14 h-auto",
     profilePic: "w-10 md:w-12 h-10 md:h-12 rounded-full mr-2",
 
     icon: "text-white text-2xl xl:text-3xl mr-2 ",
-    icon2: "text-white text-xl md:text-2xl mr-2 ",
+    icon2: "text-beige text-xl md:text-2xl mr-2 ",
     icon3: "text-rose-2 text-2xl xl:text-3xl mr-2 ",
     icon4: "text-rose-2 text-xl mx-2 md:mx-4 ",
     icon5: "text-rose-1 text-2xl xl:text-3xl mr-2 ",
@@ -54,6 +54,7 @@ export const layout = {
     footer: `${styles.flexSS} flex-col bg-dark-1 h-20 w-full fixed bottom-0 text-white w-full`,
 
     route: ` ${styles.flexSS} w-full h-16 px-4 xl:px-8 text-beige text-base xl:text-xl hover:bg-rose-3 hover:w-full hover:text-white hover:border-r-8 hover:border-rose-1 `,
+    mobileRoute: ` ${styles.flexCenter} w-1/6 h-full text-beige `,
     info: ` ${styles.flexSS} w-full h-14 px-4 rounded-b-lg hover:bg-rose-1  `,
     
     right_sec1: `${styles.flexCenter} rounded-lg bg-dark-2 w-5/6 h-16 mt-2 `,
@@ -72,7 +73,7 @@ export const layout = {
     moreInfo: `${styles.modal} ${styles.flexSS} h-auto text-center text-sm md:text-base `,
     shareCard: `${styles.modal} ${styles.flexSS} h-40 text-center`,
 
-    error: `${styles.flexCenter} text-center text-5xl h-screen md:text-7xl `,
+    error: `${styles.flexCenter} w-full bg-dark-1 md:w-7/12 text-center text-5xl h-screen md:text-7xl `,
 
     bord: `mx-4 ${styles.flexCenter} ${styles.borderS} p-1 text-sm `,
 };

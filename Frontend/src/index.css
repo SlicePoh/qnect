@@ -20,6 +20,10 @@ body{
   font-size: 0.575rem;
   line-height: 1rem;
 }
+.text-3xs{
+  font-size: 0.5rem;
+  line-height: 0.75rem;
+}
 
 ::-webkit-scrollbar {
   width: 0.8rem;
