@@ -3,6 +3,8 @@ import { layout } from '../../style'
 
 export const Competitions = () => {
   return (
-    <div className={`${layout.hero} w-full h-screen`}></div>
+    <div className={`${layout.hero} w-full h-screen`}>
+      No content yet....
+    </div>
   )
 }

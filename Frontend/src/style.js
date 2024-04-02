@@ -33,7 +33,7 @@ const styles = {
     hero: "flex-col bg-dark-2 min-h-screen w-full",
     
     modal: "z-20 absolute flex-col rounded-lg w-56 pt-2 md:pt-4 bg-rose-1/90 text-white translate-y-24",
-    emoji: "z-20 absolute flex-col rounded-lg ",
+    emoji: "z-20 ",
 
     divVerL: "border-x-2 border-biege h-screen p-4",
     divVerR: "border-x-2 border-biege h-screen p-4",
@@ -53,11 +53,11 @@ export const layout = {
     ans: `${styles.flexBetween} flex-col rounded-xl bg-dark-1 w-full md:w-7/12 h-auto my-2 `,
     footer: `${styles.flexSS} flex-col bg-dark-1 h-20 w-full fixed bottom-0 text-white w-full`,
 
-    route: ` ${styles.flexSS} w-full h-16 px-4 xl:px-8 text-beige text-base xl:text-xl hover:bg-rose-3 hover:w-full hover:text-white hover:border-r-8 hover:border-rose-1 `,
+    route: ` ${styles.flexSS} w-full h-16 px-4 xl:px-8 text-beige text-base xl:text-xl hover:bg-rose-3 hover:w-full hover:text-white`,
     mobileRoute: ` ${styles.flexCenter} w-1/6 h-full text-beige `,
     info: ` ${styles.flexSS} w-full h-14 px-4 rounded-b-lg hover:bg-rose-1  `,
     
-    right_sec1: `${styles.flexCenter} rounded-lg bg-dark-2 w-5/6 h-16 mt-2 `,
+    right_sec1: `${styles.flexCenter} rounded-lg bg-dark-2 w-5/6 h-16 mt-2 p-2`,
     right_sec2: `${styles.flexStart} flex-col rounded-lg bg-dark-2 w-5/6 h-auto mt-2 p-3 gap-3`,
 
 

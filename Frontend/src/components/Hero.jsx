@@ -7,7 +7,7 @@ import answers_data from '../data/json/answer_data.json'
 import questions_data from '../data/json/question_data.json'
 
 export const Hero = () => {
-
+  const currentUser =  users_data.find((userData) => userData._id === 2)
   return (
     <div className={`${layout.hero} `}>
       <div className={`${layout.ask}`}>
@@ -24,6 +24,7 @@ export const Hero = () => {
           question={question}
           answers={answers_data}
           users={users_data}
+          currentUser={currentUser}
         />
       ))}
    

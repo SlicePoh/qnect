@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const User = require('./userModel')
 
 const Schema=mongoose.Schema
 
@@ -15,10 +16,12 @@ const collegesSchema=new Schema({
         type: String,
         require: true,
     },
-    students:{
-        type: Arrays,
-        require: true,
-    },
+    students:[
+        {
+            type: User.ObjectID,
+            require: true,
+        }
+    ],
 })
 
 module.exports= mongoose.model('Colleges',collegesSchema)

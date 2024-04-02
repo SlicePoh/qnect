@@ -1,4 +1,6 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const User = require('./userModel');
+const Answer = require('./answersModel');
 
 const Schema=mongoose.Schema
 
@@ -8,19 +10,24 @@ const questionsSchema=new Schema({
         require: true,
     },
     user:{
-        type: Schema.type.ObjectId,
+        type: User.ObjectId,
         require: true,
         unique: true,
     },
     likes:{
-        type: Integer,
+        type: Number,
     },
-    comments:{
-        type: Array,
-    },
-    answers:{
-        type: Array,
-    },
+    comments:[
+        { 
+            type: String
+        }
+    ],
+    answers:[
+        { 
+            type: Answer.ObjectId
+        }
+    ],
 }, { timestamps: true})
 
-module.exports= mongoose.model('Questions',questionsSchema)
+const Question = mongoose.model('Questions',questionsSchema);
+module.exports= Question; 

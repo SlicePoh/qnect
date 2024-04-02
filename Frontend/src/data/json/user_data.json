@@ -5,13 +5,14 @@
         "email": "debnathjaydeep05@gmail.com",
         "password": "jaydeep@123",
         "pic": "../assets/profiles/bebnath.jpg",
-        "college": "Academy of Technology",
+        "college": "Techno India University",
         "verified": false,
         "department": "CSE",
         "year": 4,
         "bio": "Hi I'm chomp",
         "followers": [4,5],
         "following": [2,3,4,5],
+        "skills": ["Javascript","Node.js","Express"],
         "socials": [ 
             {
                 "linkedin": "https://www.linkedin.com/in/jaydeep-debnath/"
@@ -37,13 +38,14 @@
         "email": "shanitpaul22@gmail.com",
         "password": "shanit@123",
         "pic": "../assets/profiles/shanit.jpg",
-        "college": "Academy of Technology",
+        "college": "Narula Institute of Technology",
         "verified": true,
         "department": "CSE",
         "year": 4,
         "bio": "Hi I'm shan",
         "followers": [1],
         "following": [5],
+        "skills": ["React","Angular","Typecript"],
         "socials": [ 
             {
                 "linkedin": "https://www.linkedin.com/in/shanitpaul/"
@@ -76,6 +78,7 @@
         "bio": "Hi I'm Rai",
         "followers": [1],
         "following": [2,4],
+        "skills": ["Figma","C++","HTML","CSS"],
         "socials": [ 
             {
                 "linkedin": "https://www.linkedin.com/in/rayoti-kar/"
@@ -108,6 +111,7 @@
         "bio": "Hi I'm Rai",
         "followers": [1,3],
         "following": [1],
+        "skills": ["C","Java","Spring","Hibernate"],
         "socials": [ 
             {
                 "linkedin": "https://www.linkedin.com/in/dibyatanu-das-42b446211/"
@@ -133,13 +137,14 @@
         "email": "rishavsarkar3803@gmail.com",
         "password": "rishav@123",
         "pic": "../assets/profiles/shanit.jpg",
-        "college": "Academy of Technology",
+        "college": "Jadavpur University",
         "verified": true,
         "department": "CSE",
         "year": 4,
         "bio": "Hi I'm Rishav",
         "followers": [1,2],
         "following": [1],
+        "skills": ["C","C++",".NET"],
         "socials": [ 
             {
                 "linkedin": "https://www.linkedin.com/in/rishav-sarkar-7191a2250/"

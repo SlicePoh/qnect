@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 const bcrypt = require("bcrypt");
 const validator = require("validator");
+const Question = require('./questionsModel');
+const Answer = require('./answersModel');
 const Schema=mongoose.Schema
 
 const userSchema=new Schema({
@@ -37,23 +39,31 @@ const userSchema=new Schema({
     bio:{
         type: String,
     },
-    followers:{
-        type: Array,
-    },
-    following:{
-        type: Array,
-    },
-    socials:{
-        type: Array,
-    },
-    questions_asked:{
-        type: Array,
-      
-    },
-    answers_given:{
-        type: Array,
-     
-    },
+    followers: [
+        {
+            type: User.ObjectId
+        }
+    ],
+    following:[
+        {
+            type: User.ObjectId
+        }
+    ],
+    socials:[
+        {
+            type: String
+        }
+    ],
+    questions_asked:[
+        {
+            type: Question.ObjectId
+        }
+    ],
+    answers_given:[
+        {
+            type: Answer.ObjectId,
+        }
+    ],
 }, { timestamps: true})
 
 // static signup method
@@ -76,7 +86,7 @@ userSchema.statics.signup = async function (email, password) {
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, salt);
 
-    const user = await this.create({ email, password: hash });
+    const user = await this.create({ email: email, password: hash });
 
     return user;
 };
@@ -104,4 +114,5 @@ userSchema.statics.login = async function (email, password) {
     return user;
 };
 
-module.exports= mongoose.model('User',userSchema)
+const User = mongoose.model('User',userSchema)
+module.exports=User;
