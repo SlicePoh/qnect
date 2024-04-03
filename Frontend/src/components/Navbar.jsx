@@ -3,15 +3,44 @@ import s, { layout } from '../style'
 import { BiSearchAlt, BiBell } from 'react-icons/bi'
 import { PiChatCircleTextBold } from 'react-icons/pi'
 import beb from '../assets/profiles/bebnath.jpg'
+import shan from '../assets/profiles/shanit.jpg'
+import dibya from '../assets/profiles/dibya.jpeg'
+import ray from '../assets/profiles/rayoti.jpg'
+import rish from '../assets/profiles/rish.jpg'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import logo from '../assets/logo.png'
 import { Link } from 'react-router-dom'
+import users_data from '../data/json/user_data.json'
+
+const imageID = [
+  {
+    id: 1,
+    path: beb,
+  },
+  {
+    id: 2,
+    path: shan,
+  },
+  {
+    id: 3,
+    path: ray,
+  },
+  {
+    id: 4,
+    path: dibya,
+  },
+  {
+    id: 5,
+    path: rish,
+  },
+]
+
 export const Navbar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const openSearch = () => {
     setSearchOpen(!searchOpen);
   }
-
+  const currentUser = users_data.find((userData) => userData._id === 2)
   return (
     <div className={`${layout.navbar}`}>
       <div className={`${layout.navtop}`}>
@@ -36,7 +65,8 @@ export const Navbar = () => {
             <BiBell className={`${s.icon2}`} />
           </button>
           <Link className="hidden md:block" to="/single/profile">
-            <img src={beb} alt="profile" className={`${s.profilePic}`}></img>
+            {/* <img src={beb} alt="profile" className={`${s.profilePic}`}></img> */}
+            <img src={imageID.find((image) => currentUser._id === image.id).path} alt="profile" className={`${s.profilePic}`}></img>
           </Link>
           <div className="flex md:hidden">
             <RxHamburgerMenu className={`${s.icon2}`} />

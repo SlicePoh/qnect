@@ -271,7 +271,8 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
             {isComment && (
                 <div className={`${layout.comments}`}>
                     <div className={`${layout.myComments}`}>
-                        <img src={beb} alt="myicon" className={`${s.profilePic}`} />
+                        {/* <img src={beb} alt="myicon" className={`${s.profilePic}`} /> */}
+                        <img src={imageID.find((image) => currentUser._id === image.id).path} alt="profile" className={`${s.profilePic}`}></img>
                         <div className={`${layout.comments_button}`}>
                             <input ref={commentRef} placeholder="Add a comment..." type="text" value={commentText} onChange={e => setCommentText(e.target.value)} className={`${s.comments_text}`} />
                             <button onClick={() => toggleState('isEmoji')}>
