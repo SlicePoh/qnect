@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import s, { layout } from '../style'
-import { RiHeart2Fill, RiHeart2Line } from "react-icons/ri";
+import { RiDeleteBin5Fill, RiHeart2Fill, RiHeart2Line } from "react-icons/ri";
 import { BiCommentDetail, BiShare } from 'react-icons/bi'
 import { FaEye } from 'react-icons/fa'
 import { FaImage, FaRegFaceLaugh } from "react-icons/fa6";
@@ -11,27 +11,53 @@ import { SlOptionsVertical } from 'react-icons/sl'
 import { BsSendFill } from "react-icons/bs";
 import beb from '../assets/profiles/bebnath.jpg'
 import shan from '../assets/profiles/shanit.jpg'
+import dibya from '../assets/profiles/dibya.jpeg'
+import ray from '../assets/profiles/rayoti.jpg'
+import rish from '../assets/profiles/rish.jpg'
 import { ShareCard } from './modals/ShareCard'
 import { MoreInfo } from './modals/MoreInfo'
 import EmojiPicker from 'emoji-picker-react';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
+const imageID = [
+    {
+        id: 1,
+        path: beb,
+    },
+    {
+        id: 2,
+        path: shan,
+    },
+    {
+        id: 3,
+        path: ray,
+    },
+    {
+        id: 4,
+        path: dibya,
+    },
+    {
+        id: 5,
+        path: rish,
+    },
+]
+
 export const AnswerCard = ({ question, answers, users, currentUser }) => {
     const initialState = {
         isFollow: false,
-        like: false,
-        comment: false,
-        share: false,
-        options: false,
-        save: false,
+        isLike: false,
+        isComment: false,
+        isShare: false,
+        isOptions: false,
+        isSave: false,
         isSeeMore: false,
-        showEmoji: false,
+        isEmoji: false
     };
 
     const [state, setState] = useState(initialState);
-    const { isFollow, like, comment, share, options, save, isSeeMore, showEmoji } = state;
+    const { isFollow, isLike, isComment, isShare, isOptions, isSave, isSeeMore, isEmoji } = state;
 
-    const [commentText, setCommentText]= useState("")
+    const [commentText, setCommentText] = useState("")
     const commentRef = useRef();
 
     const toggleState = (key) => {
@@ -42,13 +68,24 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
         setCommentText(commentRef.current.value + event.emoji)
     }
 
-    const submitComment=()=>{
-        if(commentRef.current){
+    const submitComment = () => {
+        if (commentRef.current) {
             console.log(commentRef.current.value);
+            let newComment={
+                id: currentUser._id,
+                text: commentRef.current.value
+            }
+            question.comments.push(newComment)
         }
         setCommentText("");
     }
-
+    const deleteComment=(text)=>{
+        const commentIndex=question.comments.findIndex((com)=>com.text===text)
+        console.log(commentIndex);
+        
+        question.comments.splice(commentIndex,1)
+        toggleState('isComment')
+    }
     let answer = answers.filter((ans) => ans.question_id === question._id)
 
     // the answer with the most upvotes
@@ -123,7 +160,7 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
                 <>
                     <div className={`${layout.deets}`}>
                         <button>
-                            <img src={shan} alt="profile" className="w-8 md:w-14 h-auto rounded-full"></img>
+                            <img src={imageID.find((image)=>answerUser._id===image.id).path} alt="profile" className="w-8 md:w-14 h-auto rounded-full"></img>
                         </button>
                         <div className={`${s.flexSS} flex-col w-full ml-2 md:ml-4`}>
                             <div className={`${s.flexBetween} w-full`}>
@@ -185,7 +222,7 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
                             </div>
                         </div>
                         <div className={`${layout.skillset}`}>
-                            {answerUser.skills.map((skill,index)=>(
+                            {answerUser.skills.map((skill, index) => (
                                 <div key={index} className={`${s.skills}`}>{skill}</div>
                             ))}
                         </div>
@@ -195,8 +232,8 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
 
             <div className={`${layout.likes}`}>
                 <div className={`${s.flexCenter}`}>
-                    <button onClick={() => toggleState('like')}>
-                        {like ? (
+                    <button onClick={() => toggleState('isLike')}>
+                        {isLike ? (
                             <RiHeart2Fill className={`${s.icon4}`} />
                         ) : (
                             <RiHeart2Line className={`${s.icon4}`} />
@@ -206,7 +243,7 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
                         {question.likes}
                     </div>
                     <button onClick={() => {
-                        toggleState('comment')
+                        toggleState('isComment')
                         setState((prevState) => ({ ...prevState, showEmoji: false }))
                     }}>
                         <BiCommentDetail className={`${s.icon4}`} />
@@ -220,24 +257,24 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
                     <div className={`${s.likes_num}`}>
                         {question.views}
                     </div>
-                    <button onClick={() => toggleState('share')}>
+                    <button onClick={() => toggleState('isShare')}>
                         <BiShare className={`${s.icon4}`} />
                     </button>
                     <div className={`${s.likes_num}`}>
                         {question.shared}
                     </div>
                 </div>
-                <button onClick={() => toggleState('options')}>
+                <button onClick={() => toggleState('isOptions')}>
                     <SlOptionsVertical className={`${s.icon6}`} />
                 </button>
             </div>
-            {comment && (
+            {isComment && (
                 <div className={`${layout.comments}`}>
                     <div className={`${layout.myComments}`}>
                         <img src={beb} alt="myicon" className={`${s.profilePic}`} />
                         <div className={`${layout.comments_button}`}>
-                            <input ref={commentRef} placeholder="Add a comment..." type="text" value={commentText} onChange={e=> setCommentText(e.target.value)} className={`${s.comments_text}`} />
-                            <button onClick={() => toggleState('showEmoji')}>
+                            <input ref={commentRef} placeholder="Add a comment..." type="text" value={commentText} onChange={e => setCommentText(e.target.value)} className={`${s.comments_text}`} />
+                            <button onClick={() => toggleState('isEmoji')}>
                                 <FaRegFaceLaugh className={`${s.icon7}`} />
                             </button>
                             <button>
@@ -245,25 +282,52 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
                             </button>
                             {(commentText.length !== 0) &&
                                 <button onClick={submitComment}>
-                                    <BsSendFill className={`${s.icon7}`}/>
+                                    <BsSendFill className={`${s.icon7}`} />
                                 </button>
                             }
                         </div>
                     </div>
-                    <div className=""></div>
+                    {/* comment  */}
+                    {question.comments.map((com,i) => (
+                        <div key={i} className={`${s.flexStart} w-full`}>
+                            <img src={imageID.find((image) => image.id === com.id).path} alt="profile" className={`${s.commentPic}`} />
+                            <div  className={`${layout.commentList}`}>
+                                <div className={`${s.flexBetween} w-full`}>
+                                    <div className={`${s.flexStart} flex-col`}>
+                                        <div className={`${s.flexCenter}`}>
+                                            <div className="text-xs md:text-sm text-rose-1 font-bold">
+                                                {users.find((user)=>com.id===user._id).name}
+                                            </div>
+                                            {users.find((user)=>com.id===user._id).verified && (
+                                                <MdVerified className="text-rose-1 mx-1 text-xs md:text-lg" />
+                                            )
+                                            }
+                                        </div>
+                                        <div className="text-2xs md:text-xs text-beige">
+                                            {users.find((user)=>com.id===user._id).bio}
+                                        </div>
+                                    </div>
+                                    {(com.id===currentUser._id) && 
+                                        <RiDeleteBin5Fill onClick={()=>deleteComment(com.text)} className={`${s.icon7}`} />
+                                    }
+                                </div>                        
+                                <div className="text-sm md:text-base py-2">{com.text}</div>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             )}
-            {showEmoji &&
+            {isEmoji &&
                 <div className="absolute">
                     <EmojiPicker onEmojiClick={handleEmote} width="200" theme='dark' className={`${s.emoji}`} />
                 </div>
             }
 
-            {share && (
-                <ShareCard handleShare={() => toggleState('share')} />
+            {isShare && (
+                <ShareCard sharepost={() => toggleState('isShare')} />
             )}
-            {options && (
-                <MoreInfo handleOptions={() => toggleState('options')} handleSave={() => toggleState('save')} save={save} />
+            {isOptions && (
+                <MoreInfo handleOptions={() => toggleState('isOptions')} handleSave={() => toggleState('save')} save={isSave} />
             )}
         </div>
     )

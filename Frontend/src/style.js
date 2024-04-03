@@ -9,11 +9,12 @@ const styles = {
     
     logo: "w-10 md:w-14 h-auto",
     profilePic: "w-10 md:w-12 h-10 md:h-12 rounded-full mr-2",
+    commentPic: "w-8 md:w-10 h-8 md:h-10 rounded-full mt-3",
 
     icon: "text-white text-2xl xl:text-3xl mr-2 ",
     icon2: "text-beige text-xl md:text-2xl mr-2 ",
     icon3: "text-rose-2 text-2xl xl:text-3xl mr-2 ",
-    icon4: "text-rose-2 text-xl mx-2 md:mx-4 ",
+    icon4: "text-rose-2 text-lg md:text-xl mx-2 md:mx-4 ",
     icon5: "text-rose-1 text-2xl xl:text-3xl mr-2 ",
     icon6: "text-rose-1 text-xl mx-2 md:mx-4 ",
     icon7: "text-white text-base md:text-xl mr-2 ",
@@ -32,7 +33,7 @@ const styles = {
 
     hero: "flex-col bg-dark-2 min-h-screen w-full",
     
-    modal: "z-20 absolute flex-col rounded-lg w-56 pt-2 md:pt-4 bg-rose-1/90 text-white translate-y-24",
+    modal: "z-20 absolute flex-col rounded-lg w-56 pt-2 md:pt-4 bg-rose-3/90 text-white translate-y-24",
     emoji: "z-20 ",
 
     divVerL: "border-x-2 border-biege h-screen p-4",
@@ -67,11 +68,13 @@ export const layout = {
     answer: `${styles.flexBetween} px-4 text-xs md:text-base`,
     likes: `${styles.flexBetween} rounded-b-xl bg-dark-3 w-full h-12 p-1 md:p-4 mt-2 md:mt-4`,
     comments: `${styles.flexCenter} flex-col w-full p-4`,
+    commentList: `${styles.flexStart} w-full p-2 md:p-3 my-2 bg-dark-3 rounded-lg md:rounded-xl flex-col`,
     comments_button: `${styles.flexCenter} flex-row rounded-full border-2 border-beige w-full gap-1 md:gap-2 pr-3`,
-    myComments: `${styles.flexBetween} flex-row w-full`,
+    myComments: `${styles.flexBetween} flex-row w-full mb-4`,
     
     moreInfo: `${styles.modal} ${styles.flexSS} h-auto text-center text-sm md:text-base `,
     shareCard: `${styles.modal} ${styles.flexSS} h-40 text-center`,
+    commentInfo: `${styles.modal} ${styles.flexSS} h-auto text-center text-sm md:text-base `,
 
     error: `${styles.flexCenter} w-full bg-dark-1 md:w-7/12 text-center text-5xl h-screen md:text-7xl `,
 

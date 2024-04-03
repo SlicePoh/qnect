@@ -4,7 +4,12 @@ const express=require('express')
 const mongoose=require('mongoose')
 
 const userRoutes= require('./routes/user')
+
+mongoose.connect(process.env.MONGO_URL)
+.then(console.log("DB Connected"))
+
 const port=process.env.BACKEND_PORT
+
 //express app
 const app=express()
 

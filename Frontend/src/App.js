@@ -26,7 +26,6 @@ function App () {
         <Routes>
             <Route exact path="/" element={<Auth />}>
                 <Route index element={<Login/>}/>
-                {/* <Route path="/auth/login" element={<Login/>}/> */}
                 <Route path="/register" element={<Register />} />
                 <Route path="/reset" element={<Reset />} />
                 <Route path="/allset" element={<Allset />} />

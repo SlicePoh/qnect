@@ -4,7 +4,16 @@
         "title": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam asperiores ut odio, voluptate impedit repudiandae veritatis id?",
         "user_id": 1,
         "likes": 10,
-        "comments": ["Quisquam asperiores ut odio","voluptate impedit repudiandae"],
+        "comments": [
+            {
+                "id": 2,
+                "text": "Quisquam asperiores ut odio"
+            },
+            {
+                "id": 3,
+                "text": "voluptate impedit repudiandae"
+            }
+        ],
         "answers": [1,2],
         "views": 34,    
         "shared": 0,
@@ -16,7 +25,20 @@
         "title": "Quisquam asperiores ut odio, Lorem ipsum dolor sit amet consectetur adipisicing elit voluptate impedit repudiandae veritatis id?",
         "user_id": 2,
         "likes": 13,
-        "comments": ["A doloremque labore facere","ipsum tempore reprehenderit"],
+        "comments": [
+            {
+                "id": 1,
+                "text": "Consectetur adipisicing"
+            },
+            {
+                "id": 4,
+                "text": "A doloremque labore facere"
+            },
+            {
+                "id": 5,
+                "text": "Ipsum tempore reprehenderit"
+            }
+        ],
         "answers": [3],
         "views": 21,    
         "shared": 0,
@@ -28,7 +50,12 @@
         "title": "Repudiandae veritatis id asperiores ut odio, dolor sit amet consectetur adipisicing elit voluptate impedit?",
         "user_id": 4,
         "likes": 6,
-        "comments": ["Labore facer reprehenderit"],
+        "comments": [
+            {
+                "id": 1,
+                "text": "Labore facer reprehenderit"
+            }
+        ],
         "answers": [],
         "views": 11,    
         "shared": 0,
