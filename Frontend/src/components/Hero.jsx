@@ -33,7 +33,7 @@ const imageID = [
   },
 ]
 export const Hero = () => {
-  const currentUser = users_data.find((userData) => userData._id === 2)
+  const currentUser = users_data.find((userData) => userData._id === 4)
   return (
     <div className={`${layout.hero} `}>
       <div className={`${layout.ask}`}>

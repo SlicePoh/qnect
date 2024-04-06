@@ -25,7 +25,7 @@ const styles = {
     doubts_text: "bg-dark-3 placeholder-beige font-kulim rounded-lg text-sm md:text-lg h-10 md:h-12 p-4 outline-none w-full ",
     comments_text: "bg-transparent placeholder-beige font-kulim text-sm md:text-lg h-10 md:h-12 p-2 md:p-4 outline-none w-full ",
 
-    skills: "w-full my-1 text-center text-xs p-2 bg-dark-3 rounded-lg",
+    tags: " w-full my-1 text-center text-3xs md:text-2xs p-1 md:p-2 bg-dark-3 rounded-lg",
     likes_num: "text-sm md:text-lg text-beige mx-1 md:mx-2",
     
     right_side: "float-right bottom-20 top-20 right-0 fixed bg-dark-1 min-h-screen w-1/5 hidden md:flex",
@@ -50,7 +50,7 @@ export const layout = {
     mobilenav: `${styles.flexBetween} flex md:hidden bg-dark-3 h-10 fixed bottom-0 w-full px-4`,
     
     hero: `${styles.flexSS} ${styles.hero} flex-col px-4 md:px-0`,
-    ask: `${styles.flexBetween} rounded-xl bg-dark-1 w-full md:w-7/12 h-16 sm:h-20 mt-[94px] mb-2 p-2 sm:p-4 `,
+    ask: `${styles.flexBetween} rounded-xl bg-dark-1 w-full md:w-7/12 h-16 gap-3 sm:h-20 mt-[94px] mb-2 p-2 sm:p-4 `,
     ans: `${styles.flexBetween} flex-col rounded-xl bg-dark-1 w-full md:w-7/12 h-auto my-2 `,
     footer: `${styles.flexSS} flex-col bg-dark-1 h-20 w-full fixed bottom-0 text-white w-full`,
 
@@ -64,7 +64,7 @@ export const layout = {
 
     deets: `${styles.flexSS} w-full px-4`,
     question: `${styles.flexBetween} text-base md:text-xl text-white px-4 my-4`,
-    skillset: `${styles.flexCenter} w-1/12 flex-col hidden md:block`,
+    tagset: `${styles.flexCenter} w-1/12 flex-col hidden md:block`,
     answer: `${styles.flexBetween} px-4 text-xs md:text-base`,
     likes: `${styles.flexBetween} rounded-b-xl bg-dark-3 w-full h-12 p-1 md:p-4 mt-2 md:mt-4`,
     comments: `${styles.flexCenter} flex-col w-full p-4`,

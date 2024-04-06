@@ -48,5 +48,25 @@
         "downvotes": 10,
         "created_at": "2024-04-01T13:00:14-05:00",
         "updated_at": ""
+    },
+    {
+        "_id": 6,
+        "question_id": 4,
+        "user_id": 2,
+        "body": "Iste, nemo animi dolorum corporis maxime quisquam dignissimos? Quis tempora dolorum? Quos vel ipsum ad velit at quidem, A doloremque labore facere voluptatem maxime quasi quia iure, ipsum tempore reprehenderit illo, ipsum tempore reprehenderit illo, incidunt reiciendis esse blanditiis modi",
+        "upvotes": 28,
+        "downvotes": 3,
+        "created_at": "2024-04-06T13:07:14-05:00",
+        "updated_at": ""
+    },
+    {
+        "_id": 7,
+        "question_id": 4,
+        "user_id": 4,
+        "body": "Corporis maxime quisquam dignissimos? A doloremq uis tempora dolorum? Quos vel ipsum ad velit at quidem, iste, nemo animi dolorum ue labore facere voluptatem maxime quasi quia iure, ipsum tempore reprehenderit illo, ipsum tempore reprehenderit illo, incidunt reiciendis esse blanditiis modi",
+        "upvotes": 45,
+        "downvotes": 6,
+        "created_at": "2024-04-06T13:45:14-05:00",
+        "updated_at": ""
     }
 ]

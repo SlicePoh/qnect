@@ -221,9 +221,9 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
                                 }
                             </div>
                         </div>
-                        <div className={`${layout.skillset}`}>
-                            {answerUser.skills.map((skill, index) => (
-                                <div key={index} className={`${s.skills}`}>{skill}</div>
+                        <div className={`${layout.tagset}`}>
+                            {question.tags.map((tag, i) => (
+                                <div key={i} className={`${s.tags}`}>{tag}</div>
                             ))}
                         </div>
                     </div>
