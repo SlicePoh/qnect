@@ -9,24 +9,24 @@ const questionsSchema=new Schema({
         type: String,
         require: true,
     },
-    user:{
-        type: User.ObjectId,
-        require: true,
-        unique: true,
-    },
+    // user:{
+    //     type: User.ObjectId,
+    //     require: true,
+    //     unique: true,
+    // },
     likes:{
         type: Number,
     },
-    comments:[
-        { 
-            type: String
-        }
-    ],
-    answers:[
-        { 
-            type: Answer.ObjectId
-        }
-    ],
+    // comments:[
+    //     { 
+    //         type: String
+    //     }
+    // ],
+    // answers:[
+    //     { 
+    //         type: Answer.ObjectId
+    //     }
+    // ],
 }, { timestamps: true})
 
 const Question = mongoose.model('Questions',questionsSchema);

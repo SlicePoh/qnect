@@ -5,24 +5,19 @@ const User = require('./userModel');
 const Schema=mongoose.Schema
 
 const answersSchema=new Schema({
-    body:[
-        {
-            type: String,
-            require: true,
-        }
-    ],
-    question:{
-        type: Question.ObjectId,
-        require: true,
+    body:{
+        type: String,
+        required: true,
     },
-    user:{
-        type: User.ObjectId,
-        require: true,
-    },
-    upvotes:{
-        type: Number,
-    },
-    downvotes:{
+    // question:{
+    //     type: Question.ObjectId,
+    //     require: true,
+    // },
+    // user:{
+    //     type: User.ObjectId,
+    //     require: true,
+    // },
+    votes:{
         type: Number,
     },
 }, { timestamps: true})

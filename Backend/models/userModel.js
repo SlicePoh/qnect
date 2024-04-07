@@ -19,51 +19,51 @@ const userSchema=new Schema({
         type: String,
         require: true,
     },
-    image:{
-        type: Object,
+    // image:{
+    //     type: Object,
 
-    },
+    // },
     college:{
         type: String,
         require: true,
     },
-    verfied:{
+    verified:{
         type: Boolean,
     },
     department:{
         type: String,
     },
-    year:{
-        type: Date,
-    },
-    bio:{
-        type: String,
-    },
-    followers: [
-        {
-            type: User.ObjectId
-        }
-    ],
-    following:[
-        {
-            type: User.ObjectId
-        }
-    ],
-    socials:[
-        {
-            type: String
-        }
-    ],
-    questions_asked:[
-        {
-            type: Question.ObjectId
-        }
-    ],
-    answers_given:[
-        {
-            type: Answer.ObjectId,
-        }
-    ],
+    // year:{
+    //     type: Date,
+    // },
+    // bio:{
+    //     type: String,
+    // },
+    // followers: [
+    //     {
+    //         type: User.ObjectId
+    //     }
+    // ],
+    // following:[
+    //     {
+    //         type: User.ObjectId
+    //     }
+    // ],
+    // socials:[
+    //     {
+    //         type: String
+    //     }
+    // ],
+    // questions_asked:[
+    //     {
+    //         type: Question.ObjectId
+    //     }
+    // ],
+    // answers_given:[
+    //     {
+    //         type: Answer.ObjectId,
+    //     }
+    // ],
 }, { timestamps: true})
 
 // static signup method

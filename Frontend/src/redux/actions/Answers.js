@@ -1,5 +1,12 @@
-import { AddAnswer, DeleteAnswer,EditAnswer, SearchAnswer } from "../action-types/Answers"
+import { GetAnswer, AddAnswer, DeleteAnswer,EditAnswer, SearchAnswer } from "../action-types/Answers"
 
+export const getAnswer=(data)=>{
+    console.log(data);
+    return{
+        type: GetAnswer,
+        data,
+    }
+}
 export const addAnswer=(data)=>{
     console.log(data);
     return{
