@@ -71,7 +71,7 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
     const submitComment = () => {
         if (commentRef.current) {
             console.log(commentRef.current.value);
-            let newComment={
+            let newComment = {
                 id: currentUser._id,
                 text: commentRef.current.value
             }
@@ -79,11 +79,11 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
         }
         setCommentText("");
     }
-    const deleteComment=(text)=>{
-        const commentIndex=question.comments.findIndex((com)=>com.text===text)
+    const deleteComment = (text) => {
+        const commentIndex = question.comments.findIndex((com) => com.text === text)
         console.log(commentIndex);
-        
-        question.comments.splice(commentIndex,1)
+
+        question.comments.splice(commentIndex, 1)
         toggleState('isComment')
     }
     let answer = answers.filter((ans) => ans.question_id === question._id)
@@ -160,7 +160,7 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
                 <>
                     <div className={`${layout.deets}`}>
                         <button>
-                            <img src={imageID.find((image)=>answerUser._id===image.id).path} alt="profile" className="w-8 md:w-14 h-auto rounded-full"></img>
+                            <img src={imageID.find((image) => answerUser._id === image.id).path} alt="profile" className="w-8 md:w-14 h-auto rounded-full"></img>
                         </button>
                         <div className={`${s.flexSS} flex-col w-full ml-2 md:ml-4`}>
                             <div className={`${s.flexBetween} w-full`}>
@@ -172,20 +172,24 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
                                         <MdVerified className="text-rose-1 mx-1 text-base md:text-2xl" />
                                     )
                                     }
-                                    {isFollow ? (
-                                        <div className={`${s.flexCenter} ml-2 `}>
-                                            <GoDotFill className="text-beige text-xs sm:text-base" />
-                                            <button onClick={() => toggleState('isFollow')} className="text-beige text-xs sm:text-sm md:text-xl">
-                                                Following
-                                            </button>
-                                        </div>
-                                    ) : (
-                                        <div className={`${s.flexCenter} ml-2 `}>
-                                            <GoDotFill className="text-blue-1 text-xs sm:text-base" />
-                                            <button onClick={() => toggleState('isFollow')} className="text-blue-1 text-xs sm:text-sm md:text-xl">
-                                                Follow
-                                            </button>
-                                        </div>
+                                    {(currentUser._id !== answerUser._id) && (
+                                        <>
+                                            {isFollow ? (
+                                                <div className={`${s.flexCenter} ml-2 `}>
+                                                    <GoDotFill className="text-beige text-xs sm:text-base" />
+                                                    <button onClick={() => toggleState('isFollow')} className="text-beige text-xs sm:text-sm md:text-xl">
+                                                        Following
+                                                    </button>
+                                                </div>
+                                            ) : (
+                                                <div className={`${s.flexCenter} ml-2 `}>
+                                                    <GoDotFill className="text-blue-1 text-xs sm:text-base" />
+                                                    <button onClick={() => toggleState('isFollow')} className="text-blue-1 text-xs sm:text-sm md:text-xl">
+                                                        Follow
+                                                    </button>
+                                                </div>
+                                            )}
+                                        </>
                                     )}
                                 </div>
                             </div>
@@ -289,29 +293,29 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
                         </div>
                     </div>
                     {/* comment  */}
-                    {question.comments.map((com,i) => (
+                    {question.comments.map((com, i) => (
                         <div key={i} className={`${s.flexStart} w-full`}>
                             <img src={imageID.find((image) => image.id === com.id).path} alt="profile" className={`${s.commentPic}`} />
-                            <div  className={`${layout.commentList}`}>
+                            <div className={`${layout.commentList}`}>
                                 <div className={`${s.flexBetween} w-full`}>
                                     <div className={`${s.flexStart} flex-col`}>
                                         <div className={`${s.flexCenter}`}>
                                             <div className="text-xs md:text-sm text-rose-1 font-bold">
-                                                {users.find((user)=>com.id===user._id).name}
+                                                {users.find((user) => com.id === user._id).name}
                                             </div>
-                                            {users.find((user)=>com.id===user._id).verified && (
+                                            {users.find((user) => com.id === user._id).verified && (
                                                 <MdVerified className="text-rose-1 mx-1 text-xs md:text-lg" />
                                             )
                                             }
                                         </div>
                                         <div className="text-2xs md:text-xs text-beige">
-                                            {users.find((user)=>com.id===user._id).bio}
+                                            {users.find((user) => com.id === user._id).bio}
                                         </div>
                                     </div>
-                                    {(com.id===currentUser._id) && 
-                                        <RiDeleteBin5Fill onClick={()=>deleteComment(com.text)} className={`${s.icon7}`} />
+                                    {(com.id === currentUser._id) &&
+                                        <RiDeleteBin5Fill onClick={() => deleteComment(com.text)} className={`${s.icon7} cursor-pointer`} />
                                     }
-                                </div>                        
+                                </div>
                                 <div className="text-sm md:text-base py-2">{com.text}</div>
                             </div>
                         </div>
@@ -328,7 +332,7 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
                 <ShareCard sharepost={() => toggleState('isShare')} />
             )}
             {isOptions && (
-                <MoreInfo handleOptions={() => toggleState('isOptions')} handleSave={() => toggleState('save')} save={isSave} />
+                <MoreInfo handleOptions={() => toggleState('isOptions')} handleSave={() => toggleState('isSave')} save={isSave} />
             )}
         </div>
     )

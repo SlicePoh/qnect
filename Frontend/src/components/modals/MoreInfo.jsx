@@ -3,18 +3,18 @@ import s, { layout } from '../../style'
 import { RxCross2 } from 'react-icons/rx'
 import { FaRegBookmark, FaBookmark } from 'react-icons/fa'
 import { FiFlag, FiLink } from 'react-icons/fi'
-export const MoreInfo = ({ handleOptions, handleSave,save }) => {
+export const MoreInfo = ({ handleOptions, handleSave, save }) => {
     
     return (
         <div className={`${layout.moreInfo}`}>
-            <button onClick={handleOptions} className="w-full flex justify-end mr-5">
-                <RxCross2 />
+            <button className="w-full flex justify-end mr-5 mb-3 cursor-default">
+                <RxCross2 className='cursor-pointer' onClick={handleOptions}/>
             </button>
             <button onClick={handleSave} className={`${layout.info}`}>
                 {save ?(
-                    <FaRegBookmark className={`${s.icon7}`} />
-                ):(
                     <FaBookmark className={`${s.icon7}`} />
+                    ):(
+                    <FaRegBookmark className={`${s.icon7}`} />
                 )}
                 Save Post
             </button>

@@ -1,3 +1,4 @@
 export const AddAnswer="AddAnswer";
-export const DeleteAsnwer="DeleteAsnwer"
-export const SearchAsnwer="SearchAsnwer"
+export const DeleteAsnwer="DeleteAnswer"
+export const EditAsnwer="EditAnswer"
+export const SearchAsnwer="SearchAnswer"

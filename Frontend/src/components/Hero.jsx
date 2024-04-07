@@ -53,7 +53,7 @@ export const Hero = () => {
           currentUser={currentUser}
         />
       ))}
-
+      
     </div>
   )
 }

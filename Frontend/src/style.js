@@ -56,7 +56,7 @@ export const layout = {
 
     route: ` ${styles.flexSS} w-full h-16 px-4 xl:px-8 text-beige text-base xl:text-xl hover:bg-rose-3 hover:w-full hover:text-white`,
     mobileRoute: ` ${styles.flexCenter} w-1/6 h-full text-beige `,
-    info: ` ${styles.flexSS} w-full h-14 px-4 rounded-b-lg hover:bg-rose-1  `,
+    info: ` ${styles.flexSS} w-full h-12 px-4 rounded-b-lg hover:bg-rose-2  `,
     
     right_sec1: `${styles.flexCenter} rounded-lg bg-dark-2 w-5/6 h-16 mt-2 p-2`,
     right_sec2: `${styles.flexStart} flex-col rounded-lg bg-dark-2 w-5/6 h-auto mt-2 p-3 gap-3`,

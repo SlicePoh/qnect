@@ -1,4 +1,4 @@
-import { AddAnswer, DeleteAnswer, SearchAnswer } from "../action-types/Answers";
+import { AddAnswer, DeleteAnswer,EditAnswer, SearchAnswer } from "../action-types/Answers";
 
 const initialList=()=>{
     const list=localStorage.getItem("transaction-list")
@@ -22,6 +22,17 @@ export const AnswerReducer= (state=initialState,action)=>{
             };
         }
         case DeleteAnswer:{
+            const {data} = action;
+            const updatedList=state.answerList.filter(
+                (item)=>item.createdAt!==data.createdAt
+            )
+            localStorage.setItem("transaction-list", JSON.stringify(updatedList))
+            return{
+                ...state,
+                answerList: updatedList,
+            };
+        }
+        case EditAnswer:{
             const {data} = action;
             const updatedList=state.answerList.filter(
                 (item)=>item.createdAt!==data.createdAt
