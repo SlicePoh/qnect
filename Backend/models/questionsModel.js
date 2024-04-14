@@ -17,6 +17,11 @@ const questionsSchema=new Schema({
     likes:{
         type: Number,
     },
+    tags:[
+        {
+            type: String
+        },
+    ],
     // comments:[
     //     { 
     //         type: String

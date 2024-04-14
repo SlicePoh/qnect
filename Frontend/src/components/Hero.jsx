@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import s, { layout } from '../style'
 import { AnswerCard } from './AnswerCard'
+import { useDispatch, useSelector } from 'react-redux';
 import beb from '../assets/profiles/bebnath.jpg'
 import shan from '../assets/profiles/shanit.jpg'
 import dibya from '../assets/profiles/dibya.jpeg'
@@ -9,6 +10,9 @@ import rish from '../assets/profiles/rish.jpg'
 import users_data from '../data/json/user_data.json'
 import answers_data from '../data/json/answer_data.json'
 import questions_data from '../data/json/question_data.json'
+import { getAnswer } from '../redux/actions/Answers';
+import { getAllAnswers } from '../redux/slices/Answers';
+import axios from 'axios';
 
 const imageID = [
   {
@@ -33,6 +37,16 @@ const imageID = [
   },
 ]
 export const Hero = () => {
+  const dispatch=useDispatch();
+  // const getAnswers= async()=>{
+  //   const data=await axios.get("http://localhost:7000/api/v1/answer/");
+  //   console.log(data);
+  // }
+  useEffect(() => {
+    const data=dispatch(getAllAnswers());
+    console.log(data);
+  }, [dispatch]);
+  
   const currentUser = users_data.find((userData) => userData._id === 4)
   return (
     <div className={`${layout.hero} `}>
