@@ -1,3 +1,4 @@
+import { IP } from "../../components/IPConfig";
 import { GetAnswer, AddAnswer, DeleteAnswer,UpdateAnswer, SearchAnswer } from "../action-types/Answers";
 
 // Import axios to make HTTP requests
@@ -7,20 +8,20 @@ import axios from 'axios';
 export const getAnswer = () => {
     return async (dispatch) => {
         try {
-            const response = await axios.get('http://localhost:7000/api/v1/answer/');
+            const response = await axios.get(`${IP}/answer`);
             dispatch({ type: GetAnswer, data: response.data.data.answer });
         } catch (error) {
-            // Handle error
+            console.log(error);
         }
     };
 };
 export const addAnswer = (answerData) => {
     return async (dispatch) => {
         try {
-            const response = await axios.post('/api/answer', answerData);
+            const response = await axios.post(`${IP}/answer`, answerData);
             dispatch({ type: AddAnswer, data: response.data.data.answer });
         } catch (error) {
-            // Handle error
+            console.log(error);
         }
     };
 };
@@ -28,10 +29,10 @@ export const addAnswer = (answerData) => {
 export const deleteAnswer = (id) => {
     return async (dispatch) => {
         try {
-            await axios.delete(`/api/answer/${id}`);
+            await axios.delete(`${IP}/answer/${id}`);
             dispatch({ type: DeleteAnswer, id });
         } catch (error) {
-            // Handle error
+            console.log(error);
         }
     };
 };
@@ -39,10 +40,10 @@ export const deleteAnswer = (id) => {
 export const editAnswer = (id, updatedData) => {
     return async (dispatch) => {
         try {
-            const response = await axios.patch(`/api/answer/${id}`, updatedData);
+            const response = await axios.patch(`${IP}/answer/${id}`, updatedData);
             dispatch({ type: UpdateAnswer, data: response.data.data.answer });
         } catch (error) {
-            // Handle error
+            console.log(error);
         }
     };
 };

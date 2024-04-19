@@ -36,8 +36,8 @@ app.use("/api/v1/question", questionRoutes);
 app.use("/api/v1/answer", answerRoutes);
 app.use("/api/v1/user", userRoutes);
 
-app.all('*',(req,res,next)=>{
-  console.log("URL not found");
-})
+// app.all('*',(req,res,next)=>{
+//   console.log("URL not found");
+// })
 
-app.use(globalErrorHandler)
+//  app.use(globalErrorHandler)

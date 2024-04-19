@@ -1,32 +1,60 @@
 import {createSlice,createAsyncThunk} from '@reduxjs/toolkit';
-import axios from 'axios';
+
+import {IP} from '../../components/IPConfig'
 
 export const getAllAnswers = createAsyncThunk('getAllAnswers',async ()=>{
-    const response= await axios.get('/api/v1/answer');
+    const response = await fetch(`${IP}/answer`,{
+        method: 'GET'
+    });
     return response;
 })
+export const getAnswer = createAsyncThunk('getAnswer',async (id)=>{
+    const response = await fetch(`${IP}/answer/${id}`,{
+        method: 'GET'
+    });
+    return response.json();
+})
 export const addAnswer = createAsyncThunk('addAnswers',async ()=>{
-    const response= await axios.post('/api/v1/answer');
-    return response;
+    const response= await fetch(`${IP}/answer`,{
+        method: 'POST'
+    });
+    return response.json();
 })
 
 const answerSlice = createSlice({
     name: "answer",
-    initialState: false,
-    data: null,
+    initialState: {
+        answer: null,
+        status: 'idle',
+        error: null
+    },
+    // data: "",
     extraReducers: (builder)=>{
-        builder.addCase(getAllAnswers.pending, (state,action)=>{
-            state.isLoading= true;
-        });
-        builder.addCase(getAllAnswers.fulfilled, (state,action)=>{
-            state.isLoading= false;
-            state.data=action.payload;
-        });
-        builder.addCase(getAllAnswers.rejected, (state,action)=>{
-            state.isError= true;
-            console.log("Error getting answers from backend",action.payload)
-        });
-        
+        builder
+            .addCase(getAllAnswers.pending, (state)=>{
+                state.status = 'loading';
+            })
+            .addCase(getAllAnswers.fulfilled, (state,action)=>{
+                state.status = 'succeeded';
+                state.answer = action.payload;
+            })
+            .addCase(getAllAnswers.rejected, (state,action)=>{
+                state.status = 'failed';
+                state.error = action.error.message;
+                console.log('Error getting answers from backend',state.error)
+            })  
+            // .addCase(addAnswer.pending, (state)=>{
+            //     state.status = 'loading';
+            // })
+            // .addCase(addAnswer.fulfilled, (state,action)=>{
+            //     state.status = 'succeeded';
+            //     state.quote = action.payload;
+            // })
+            // .addCase(addAnswer.rejected, (state,action)=>{
+            //     state.status = 'failed';
+            //     state.error = action.error.message;
+            //     console.log('Error posting answer to backend',state.error)
+            // })  
     }
 })
 

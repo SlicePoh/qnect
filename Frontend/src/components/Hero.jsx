@@ -10,9 +10,8 @@ import rish from '../assets/profiles/rish.jpg'
 import users_data from '../data/json/user_data.json'
 import answers_data from '../data/json/answer_data.json'
 import questions_data from '../data/json/question_data.json'
-import { getAnswer } from '../redux/actions/Answers';
 import { getAllAnswers } from '../redux/slices/Answers';
-import axios from 'axios';
+
 
 const imageID = [
   {
@@ -38,24 +37,30 @@ const imageID = [
 ]
 export const Hero = () => {
   const dispatch=useDispatch();
-  // const getAnswers= async()=>{
-  //   const data=await axios.get("http://localhost:7000/api/v1/answer/");
-  //   console.log(data);
-  // }
-  useEffect(() => {
-    const data=dispatch(getAllAnswers());
-    console.log(data);
-  }, [dispatch]);
+  const answerQuote = useSelector((state) => state.answer);
+  const status = useSelector((state) => state.status);
   
+  useEffect(() => {
+    dispatch(getAllAnswers());
+  }, [dispatch]);
+
+  // const handleFetchAnswers=()=>{
+    //   dispatch(getAllAnswers())
+    // }
+    // console.log(status);
+  if(answerQuote){
+    console.log(answerQuote);
+  }
+
   const currentUser = users_data.find((userData) => userData._id === 4)
   return (
     <div className={`${layout.hero} `}>
       <div className={`${layout.ask}`}>
-        <button>
+        <button onClick={()=>dispatch(getAllAnswers())}>
           <img src={imageID.find((image) => currentUser._id === image.id).path} alt="profile" className={`${s.profilePic}`}></img>
         </button>
-
-        <input placeholder="what are your doubts today?" className={`${s.doubts_text} `} />
+       
+        <input placeholder='what are your doubts today?' className={`${s.doubts_text} `} />
 
       </div>
       {questions_data.map((question) => (
@@ -68,6 +73,19 @@ export const Hero = () => {
         />
       ))}
       
+      {answerQuote && status==='succeeded' ?
+        <>
+          {answerQuote.quote.answer.map((ans,i)=>(
+              <div className='text-xs mx-96' key={i}>
+                <div className="">
+                {ans.body}
+                </div>
+                {ans.votes}
+              </div>
+            ))}
+        </>
+        : null
+      }
     </div>
   )
 }
