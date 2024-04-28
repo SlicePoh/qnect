@@ -86,7 +86,11 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
         question.comments.splice(commentIndex, 1)
         toggleState('isComment')
     }
-    let answer = answers.filter((ans) => ans.question_id === question._id)
+
+    const answer = answers.filter((ans) => ans.question_id === question._id)
+    const openQuestion=()=>{
+        console.log(`question no. ${question._id} opened!!`);
+    }
 
     // the answer with the most upvotes
     let mostUpvotedAnswer = {
@@ -152,7 +156,7 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
                         </div>
                     )}
                 </div>
-                <button>
+                <button onClick={openQuestion}>
                     <FiEdit className={`${s.icon5} `} />
                 </button>
             </div>
@@ -214,7 +218,7 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
                                     (mostUpvotedAnswer.body.length > 450 ? (
                                         <div className="py-4 px-2">
                                             {mostUpvotedAnswer.body.slice(0, 450)}
-                                            <button className="text-rose-1 font-bold">...(more)</button>
+                                            <button onClick={openQuestion} className="text-rose-1 font-bold">...(more)</button>
                                         </div>
                                     ) : (
                                         <div className="py-4 px-2">

@@ -37,19 +37,16 @@ const imageID = [
 ]
 export const Hero = () => {
   const dispatch=useDispatch();
-  const answerQuote = useSelector((state) => state.answer);
-  const status = useSelector((state) => state.status);
+  const answerSelect = useSelector((state) => state.answer);
+
   
   useEffect(() => {
     dispatch(getAllAnswers());
   }, [dispatch]);
 
-  // const handleFetchAnswers=()=>{
-    //   dispatch(getAllAnswers())
-    // }
-    // console.log(status);
-  if(answerQuote){
-    console.log(answerQuote);
+  if(answerSelect){
+    console.log(answerSelect.status);
+    // console.log(answerSelect.answer.data.answer);
   }
 
   const currentUser = users_data.find((userData) => userData._id === 4)
@@ -73,9 +70,9 @@ export const Hero = () => {
         />
       ))}
       
-      {answerQuote && status==='succeeded' ?
+      {/* {answerSelect && answerSelect.answer.status==='succeeded' ?
         <>
-          {answerQuote.quote.answer.map((ans,i)=>(
+          {answerSelect.answer.data.answer.map((ans,i)=>(
               <div className='text-xs mx-96' key={i}>
                 <div className="">
                 {ans.body}
@@ -85,7 +82,7 @@ export const Hero = () => {
             ))}
         </>
         : null
-      }
+      } */}
     </div>
   )
 }

@@ -50,7 +50,7 @@ export const Navbar = () => {
           </Link>
         </div>
 
-        <div className={`${s.flexCenter}`}>
+        <div className={`${s.flexCenter} gap-2`}>
           <button onClick={openSearch}>
             <BiSearchAlt className={`${s.icon2} flex sm:hidden`} />
           </button>

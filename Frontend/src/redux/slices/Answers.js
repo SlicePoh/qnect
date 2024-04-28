@@ -6,7 +6,7 @@ export const getAllAnswers = createAsyncThunk('getAllAnswers',async ()=>{
     const response = await fetch(`${IP}/answer`,{
         method: 'GET'
     });
-    return response;
+    return response.json();
 })
 export const getAnswer = createAsyncThunk('getAnswer',async (id)=>{
     const response = await fetch(`${IP}/answer/${id}`,{

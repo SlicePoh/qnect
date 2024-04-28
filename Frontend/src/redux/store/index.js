@@ -1,8 +1,8 @@
 
-import {legacy_createStore as createStore, applyMiddleware} from 'redux';
+// import {legacy_createStore as createStore, applyMiddleware} from 'redux';
 import {thunk} from 'redux-thunk';
 
-import {configureStore, combineReducers, Tuple} from '@reduxjs/toolkit';
+import {configureStore, combineReducers} from '@reduxjs/toolkit';
 import answerSlice from '../slices/Answers'
 import questionSlice from '../slices/Answers'
 

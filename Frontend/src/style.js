@@ -11,8 +11,8 @@ const styles = {
     profilePic: "w-10 md:w-12 h-10 md:h-12 rounded-full mr-2",
     commentPic: "w-8 md:w-10 h-8 md:h-10 rounded-full mt-3",
 
-    icon: "text-white text-2xl xl:text-3xl mr-2 ",
-    icon2: "text-beige text-xl md:text-2xl mr-2 ",
+    icon: "text-2xl xl:text-3xl mr-2 ",
+    icon2: "text-beige text-xl md:text-2xl ",
     icon3: "text-rose-2 text-2xl xl:text-3xl mr-2 ",
     icon4: "text-rose-2 text-lg md:text-xl mx-2 md:mx-4 ",
     icon5: "text-rose-1 text-2xl xl:text-3xl mr-2 ",
@@ -47,7 +47,7 @@ export const layout = {
 
     navbar: `${styles.flexCenter} flex-col z-20 bg-dark-1 h-auto sm:h-20 w-full py-4 sm:py-0 fixed pl-6 pr-2 md:px-8`,
     navtop: `${styles.flexBetween} w-full `,
-    mobilenav: `${styles.flexBetween} flex md:hidden bg-dark-3 h-10 fixed bottom-0 w-full px-4`,
+    mobilenav: `${styles.flexCenter} flex md:hidden bg-dark-3 h-10 fixed bottom-0 w-full `,
     
     hero: `${styles.flexSS} ${styles.hero} flex-col px-4 md:px-0`,
     ask: `${styles.flexBetween} rounded-xl bg-dark-1 w-full md:w-7/12 h-16 gap-3 sm:h-20 mt-[94px] mb-2 p-2 sm:p-4 `,
@@ -55,7 +55,7 @@ export const layout = {
     footer: `${styles.flexSS} flex-col bg-dark-1 h-20 w-full fixed bottom-0 text-white w-full`,
 
     route: ` ${styles.flexSS} w-full h-16 px-4 xl:px-8 text-beige text-base xl:text-xl hover:bg-rose-3 hover:w-full hover:text-white`,
-    mobileRoute: ` ${styles.flexCenter} w-1/6 h-full text-beige `,
+    mobileRoute: `${styles.flexCenter} w-1/6 h-full text-beige `,
     info: ` ${styles.flexSS} w-full h-12 px-4 rounded-b-lg hover:bg-rose-2  `,
     
     right_sec1: `${styles.flexCenter} rounded-lg bg-dark-2 w-5/6 h-16 mt-2 p-2`,
