@@ -1,5 +1,4 @@
 import {createSlice,createAsyncThunk} from '@reduxjs/toolkit';
-
 import {IP} from '../../components/IPConfig'
 
 export const getAllAnswers = createAsyncThunk('getAllAnswers',async ()=>{
@@ -14,47 +13,114 @@ export const getAnswer = createAsyncThunk('getAnswer',async (id)=>{
     });
     return response.json();
 })
-export const addAnswer = createAsyncThunk('addAnswers',async ()=>{
-    const response= await fetch(`${IP}/answer`,{
-        method: 'POST'
+export const addAnswer = createAsyncThunk('addAnswer',async (data)=>{
+    const response = await fetch(`${IP}/answer`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
     });
     return response.json();
 })
+export const updateAnswer = createAsyncThunk('updateAnswer', async (payload) => {
+    const { id, newData } = payload;
+    const response = await fetch(`${IP}/answer/${id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newData)
+    });
+    return response.json();
+});
+
+export const deleteAnswer = createAsyncThunk('deleteAnswer', async (id) => {
+    const response = await fetch(`${IP}/answer/${id}`, {
+        method: 'DELETE'
+    });
+    return response.json();
+});
 
 const answerSlice = createSlice({
-    name: "answer",
+    name: 'answer',
     initialState: {
-        answer: null,
+        answer: [],
         status: 'idle',
         error: null
     },
     // data: "",
     extraReducers: (builder)=>{
         builder
+            // get all answers
             .addCase(getAllAnswers.pending, (state)=>{
                 state.status = 'loading';
             })
             .addCase(getAllAnswers.fulfilled, (state,action)=>{
                 state.status = 'succeeded';
                 state.answer = action.payload;
+                console.log(state.answer,'and its',state.status);
             })
             .addCase(getAllAnswers.rejected, (state,action)=>{
                 state.status = 'failed';
                 state.error = action.error.message;
                 console.log('Error getting answers from backend',state.error)
             })  
-            // .addCase(addAnswer.pending, (state)=>{
-            //     state.status = 'loading';
-            // })
-            // .addCase(addAnswer.fulfilled, (state,action)=>{
-            //     state.status = 'succeeded';
-            //     state.quote = action.payload;
-            // })
-            // .addCase(addAnswer.rejected, (state,action)=>{
-            //     state.status = 'failed';
-            //     state.error = action.error.message;
-            //     console.log('Error posting answer to backend',state.error)
-            // })  
+            // getAnswer
+            .addCase(getAnswer.pending, (state)=>{
+                state.status = 'loading';
+            })
+            .addCase(getAnswer.fulfilled, (state,action)=>{
+                state.status = 'succeeded';
+                state.answer = action.payload;
+                console.log(state.answer,'and its',state.status);
+            })
+            .addCase(getAnswer.rejected, (state,action)=>{
+                state.status = 'failed';
+                state.error = action.error.message;
+                console.log('Error getting answers from backend',state.error)
+            }) 
+            // post an answer
+            .addCase(addAnswer.pending, (state)=>{
+                state.status = 'loading';
+            })
+            .addCase(addAnswer.fulfilled, (state,action)=>{
+                state.status = 'succeeded';
+                state.answer = action.payload;
+                console.log(state.answer,'added successfully');
+            })
+            .addCase(addAnswer.rejected, (state,action)=>{
+                state.status = 'failed';
+                state.error = action.error.message;
+                console.log('Error posting answer to backend',state.error)
+            }) 
+            // update answer
+            .addCase(updateAnswer.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(updateAnswer.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+                state.answer = action.payload;
+                console.log('Answer patched successfully');
+            })
+            .addCase(updateAnswer.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.error.message;
+                console.log('Error patching answer:', state.error);
+            })
+            // delete answer
+            .addCase(deleteAnswer.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(deleteAnswer.fulfilled, (state) => {
+                state.status = 'succeeded';
+                console.log('Answer deleted successfully');
+            })
+            .addCase(deleteAnswer.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.error.message;
+                console.log('Error deleting answer:', state.error);
+            }); 
     }
 })
 

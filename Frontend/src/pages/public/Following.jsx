@@ -6,27 +6,27 @@ import { getAllQuestions } from '../../redux/slices/Question';
 
 export const Following = () => {
   const dispatch=useDispatch();
-  const questionQuote = useSelector((state) => state.quote);
-  const status = useSelector((state) => state.status);
+  const questionSelect = useSelector((state) => state.question);
   
   useEffect(() => {
     dispatch(getAllQuestions());
   }, [dispatch]);
 
-  if(questionQuote){
-    console.log(questionQuote);
-    console.log(status);
-  }
   return (
     <div className={`${layout.hero} w-full h-screen`}>
-      {questionQuote && status==='succeeded' ?
+      {questionSelect.question && questionSelect.status==='succeeded' ?
         <>
-          {questionQuote.data.question.map((que,i)=>(
-              <div className='text-xs mx-96' key={i}>
+          {questionSelect.question.data.question.map((que)=>(
+              <div className='text-lg mx-10 mt-20' key={que._id}>
                 <div className="">
                 {que.title}
                 </div>
                 {que.likes}
+                {que.tags.map((tag,i)=>(
+                  <div key={i} className="text-sm text-rose-1">
+                    {tag}
+                  </div>
+                ))}
               </div>
             ))}
         </>

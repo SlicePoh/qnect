@@ -4,13 +4,14 @@ import {thunk} from 'redux-thunk';
 
 import {configureStore, combineReducers} from '@reduxjs/toolkit';
 import answerSlice from '../slices/Answers'
-import questionSlice from '../slices/Answers'
+import questionSlice from '../slices/Question'
+import userSlice from '../slices/User'
 
 // Combine reducers
 const rootReducer = combineReducers({
-    // users: userReducer,
     question: questionSlice,
     answer: answerSlice,
+    user: userSlice,
 });
 
 // Apply Redux Thunk middleware
