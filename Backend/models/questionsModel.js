@@ -1,37 +1,54 @@
 const mongoose = require('mongoose');
-const User = require('./userModel');
-const Answer = require('./answersModel');
-
+const SchemaTypes = mongoose.Schema.Types;
 const Schema=mongoose.Schema
 
 const questionsSchema=new Schema({
     title:{
         type: String,
-        require: true,
+        required: true,
     },
-    // user:{
-    //     type: User.ObjectId,
-    //     require: true,
-    //     unique: true,
-    // },
+    user:{
+        type: SchemaTypes.ObjectId,
+        ref: 'User',
+        required: true,
+        unique: true,
+    },
     likes:{
         type: Number,
+        validate(val){
+            if(val<0){
+                throw new Error("likes shouldn't be negative");
+            }
+        }
     },
     tags:[
         {
             type: String
         },
     ],
-    // comments:[
-    //     { 
-    //         type: String
-    //     }
-    // ],
-    // answers:[
-    //     { 
-    //         type: Answer.ObjectId
-    //     }
-    // ],
+    views:{
+        type: Number
+    },
+    shared:{
+        type: Number
+    },
+    comments:[
+        { 
+            id: {
+                type: SchemaTypes.ObjectId,
+                ref: 'User'
+            },
+            text: {
+                type: String
+            }
+        }
+    ],
+    answers:[
+        { 
+            type: SchemaTypes.ObjectId,
+            ref: 'Answer'
+        }
+    ],
 }, { timestamps: true})
 
 const Question = mongoose.model('Questions',questionsSchema);

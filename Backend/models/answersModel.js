@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
-const Question = require('./questionsModel');
-const User = require('./userModel');
-
+const SchemaTypes = mongoose.Schema.Types;
 const Schema=mongoose.Schema
 
 const answersSchema=new Schema({
@@ -9,14 +7,16 @@ const answersSchema=new Schema({
         type: String,
         required: true,
     },
-    // question:{
-    //     type: Question.ObjectId,
-    //     require: true,
-    // },
-    // user:{
-    //     type: User.ObjectId,
-    //     require: true,
-    // },
+    question:{
+        type: SchemaTypes.ObjectId,
+        ref: 'Question',
+        required: true,
+    },
+    user:{
+        type: SchemaTypes.ObjectId,
+        ref: 'User',
+        required: true,
+    },
     votes:{
         type: Number,
     },

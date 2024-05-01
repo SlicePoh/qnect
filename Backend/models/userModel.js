@@ -1,23 +1,22 @@
 const mongoose = require('mongoose')
 const bcrypt = require("bcrypt");
 const validator = require("validator");
-const Question = require('./questionsModel');
-const Answer = require('./answersModel');
+const SchemaTypes = mongoose.Schema.Types;
 const Schema=mongoose.Schema
 
 const userSchema=new Schema({
     name:{
         type: String,
-        require: true,
+        required: true,
     },
     email:{
         type: String,
-        require: true,
+        required: true,
         unique: true
     },
     password:{
         type: String,
-        require: true,
+        required: true,
     },
     // image:{
     //     type: Object,
@@ -25,7 +24,7 @@ const userSchema=new Schema({
     // },
     college:{
         type: String,
-        require: true,
+        required: true,
     },
     verified:{
         type: Boolean,
@@ -33,37 +32,51 @@ const userSchema=new Schema({
     department:{
         type: String,
     },
-    // year:{
-    //     type: Date,
-    // },
-    // bio:{
-    //     type: String,
-    // },
-    // followers: [
-    //     {
-    //         type: User.ObjectId
-    //     }
-    // ],
-    // following:[
-    //     {
-    //         type: User.ObjectId
-    //     }
-    // ],
-    // socials:[
-    //     {
-    //         type: String
-    //     }
-    // ],
-    // questions_asked:[
-    //     {
-    //         type: Question.ObjectId
-    //     }
-    // ],
-    // answers_given:[
-    //     {
-    //         type: Answer.ObjectId,
-    //     }
-    // ],
+    year:{
+        type: Number,
+        validate(val){
+            if(val<0){
+                throw new Error("year shouldn't be negative");
+            }
+        }
+    },
+    bio:{
+        type: String,
+    },
+    followers: [
+        {
+            type: SchemaTypes.ObjectId,
+            ref: 'User',
+        }
+    ],
+    following:[
+        {
+            type: SchemaTypes.ObjectId,
+            ref: 'User',
+        }
+    ],
+    socials:[
+        {
+            type: String
+        }
+    ],
+    skills:[
+        {
+            type: String
+        },
+    ],
+    questions_asked:[
+        {
+            type: SchemaTypes.ObjectId,
+            ref: 'Question',
+        }
+    ],
+    answers_given:[
+        {
+            type: SchemaTypes.ObjectId,
+            ref: 'Answer',
+        }
+    ],
 }, { timestamps: true})
 
 // static signup method

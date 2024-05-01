@@ -320,7 +320,7 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
                                         <RiDeleteBin5Fill onClick={() => deleteComment(com.text)} className={`${s.icon7} cursor-pointer`} />
                                     }
                                 </div>
-                                <div className="text-sm md:text-base py-2">{com.text}</div>
+                                <div className="text-xs md:text-base py-2">{com.text}</div>
                             </div>
                         </div>
                     ))}
