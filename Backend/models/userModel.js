@@ -65,13 +65,13 @@ const userSchema=new Schema({
             type: String
         },
     ],
-    questions_asked:[
+    questions_id:[
         {
             type: SchemaTypes.ObjectId,
             ref: 'Question',
         }
     ],
-    answers_given:[
+    answers_id:[
         {
             type: SchemaTypes.ObjectId,
             ref: 'Answer',

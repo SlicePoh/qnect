@@ -7,7 +7,7 @@ const questionsSchema=new Schema({
         type: String,
         required: true,
     },
-    user:{
+    user_id:{
         type: SchemaTypes.ObjectId,
         ref: 'User',
         required: true,
@@ -43,7 +43,7 @@ const questionsSchema=new Schema({
             }
         }
     ],
-    answers:[
+    answers_id:[
         { 
             type: SchemaTypes.ObjectId,
             ref: 'Answer'

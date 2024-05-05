@@ -45,7 +45,7 @@ export const deleteAnswer = createAsyncThunk('deleteAnswer', async (id) => {
 const answerSlice = createSlice({
     name: 'answer',
     initialState: {
-        answer: [],
+        answers: [],
         status: 'idle',
         error: null
     },
@@ -58,8 +58,8 @@ const answerSlice = createSlice({
             })
             .addCase(getAllAnswers.fulfilled, (state,action)=>{
                 state.status = 'succeeded';
-                state.answer = action.payload;
-                console.log(state.answer,'and its',state.status);
+                state.answers = action.payload;
+                console.log(state.answers,'and its',state.status);
             })
             .addCase(getAllAnswers.rejected, (state,action)=>{
                 state.status = 'failed';
@@ -72,8 +72,8 @@ const answerSlice = createSlice({
             })
             .addCase(getAnswer.fulfilled, (state,action)=>{
                 state.status = 'succeeded';
-                state.answer = action.payload;
-                console.log(state.answer,'and its',state.status);
+                state.answers.push(action.payload);
+                console.log(state.answers,'and its',state.status);
             })
             .addCase(getAnswer.rejected, (state,action)=>{
                 state.status = 'failed';
@@ -86,8 +86,8 @@ const answerSlice = createSlice({
             })
             .addCase(addAnswer.fulfilled, (state,action)=>{
                 state.status = 'succeeded';
-                state.answer = action.payload;
-                console.log(state.answer,'added successfully');
+                state.answers= action.payload;
+                console.log(state.answers,'added successfully');
             })
             .addCase(addAnswer.rejected, (state,action)=>{
                 state.status = 'failed';
@@ -100,7 +100,10 @@ const answerSlice = createSlice({
             })
             .addCase(updateAnswer.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                state.answer = action.payload;
+                const updatedAnswer = action.payload;
+                state.answers = state.answers.map(answer => 
+                    answer._id === updatedAnswer._id ? updatedAnswer : answer
+                );
                 console.log('Answer patched successfully');
             })
             .addCase(updateAnswer.rejected, (state, action) => {
@@ -112,8 +115,10 @@ const answerSlice = createSlice({
             .addCase(deleteAnswer.pending, (state) => {
                 state.status = 'loading';
             })
-            .addCase(deleteAnswer.fulfilled, (state) => {
+            .addCase(deleteAnswer.fulfilled, (state,action) => {
                 state.status = 'succeeded';
+                state.answers = action.payload;
+                // state.answers = state.answers.filter(ans => ans._id !== action.meta.arg);
                 console.log('Answer deleted successfully');
             })
             .addCase(deleteAnswer.rejected, (state, action) => {

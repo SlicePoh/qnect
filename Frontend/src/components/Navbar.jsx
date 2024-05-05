@@ -10,39 +10,35 @@ import rish from '../assets/profiles/rish.jpg'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import logo from '../assets/logo.png'
 import { Link } from 'react-router-dom'
-import users_data from '../data/json/user_data.json'
+// import users_data from '../data/json/user_data.json'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllQuestions } from '../redux/slices/Question'
 import { getAllUsers } from '../redux/slices/User'
-import { getAllAnswers } from '../redux/slices/Answers'
 
 const imageID = [
   {
-    id: '662fd6930752b953da15b79f',
+    id: '6632922623fbd5822d22dfb9',
     path: beb,
   },
   {
-    id: '6612d796d603ff13d984eec7',
+    id: '6632930223fbd5822d22dfc5',
     path: shan,
   },
   {
-    id: '663243ef3fc56bd77e209bb3',
+    id: '6632937223fbd5822d22dfc7',
     path: ray,
   },
   {
-    id: '662fd7090752b953da15b7a1',
+    id: '663293aa23fbd5822d22dfca',
     path: dibya,
   },
   {
-    id: '662fd8cf0752b953da15b7ac',
+    id: '663293d623fbd5822d22dfcc',
     path: rish,
   },
 ]
 
 export const Navbar = () => {
   const dispatch=useDispatch();
-  const questionSelect = useSelector((state) => state.question);
-  const answerSelect = useSelector((state) => state.answer);
   const userSelect = useSelector((state) => state.user);
   let currentUser={};
   const [searchOpen, setSearchOpen] = useState(false);
@@ -51,12 +47,10 @@ export const Navbar = () => {
   }
 
   useEffect(() => {
-    dispatch(getAllQuestions());
-    dispatch(getAllAnswers());
     dispatch(getAllUsers());
   }, [dispatch]);
   if(userSelect.user && userSelect.status==='succeeded'){
-    currentUser = userSelect.user.data.user.find((userData) => userData._id === '663243ef3fc56bd77e209bb3')
+    currentUser = userSelect.user.data.user.find((userData) => userData._id === '6632937223fbd5822d22dfc7')
   }
   return (
     <div className={`${layout.navbar}`}>

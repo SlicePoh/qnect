@@ -40,7 +40,8 @@ exports.getAnswer= async (req,res)=>{
 // create a new Answer
 exports.addAnswer= async (req,res)=>{
     try{
-        const answer=await Answer.create(req.body)
+        await Answer.create(req.body);
+        const answer=await Answer.find();
         res.status(201).json({
             status: "success",
             data: {answer}
@@ -58,9 +59,11 @@ exports.addAnswer= async (req,res)=>{
 exports.deleteAnswer= async (req,res)=>{
     try{
         await Answer.findByIdAndDelete(req.params.id)
-
+        
+        const answer= await Answer.find();
         res.status(200).json({
-            status: "success"
+            status: "success",
+            data: {answer}
         })
     }
     catch(error){
@@ -75,7 +78,8 @@ exports.deleteAnswer= async (req,res)=>{
 exports.updateAnswer= async (req,res)=>{
 
     try{
-        const answer=await Answer.findByIdAndUpdate(req.params.id,req.body,{new: true})
+        await Answer.findByIdAndUpdate(req.params.id,req.body,{new: true})
+        const answer=await Answer.find();
         res.status(200).json({
             status: "success",
             data: {answer}

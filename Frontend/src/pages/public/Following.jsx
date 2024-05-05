@@ -13,7 +13,7 @@ export const Following = () => {
   }, [dispatch]);
 
   return (
-    <div className={`${layout.hero} w-full h-screen`}>
+    <div className={`${layout.hero} w-full min-h-screen pb-20`}>
       {questionSelect.question && questionSelect.status==='succeeded' ?
         <>
           {questionSelect.question.data.question.map((que)=>(

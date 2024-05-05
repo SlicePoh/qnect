@@ -18,31 +18,33 @@ import { ShareCard } from './modals/ShareCard'
 import { MoreInfo } from './modals/MoreInfo'
 import EmojiPicker from 'emoji-picker-react';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
-
+import { updateQuestion, updateQuestionComments } from '../redux/slices/Question';
+import { useDispatch } from 'react-redux';
 const imageID = [
     {
-        id: 1,
-        path: beb,
+      id: '6632922623fbd5822d22dfb9',
+      path: beb,
     },
     {
-        id: 2,
-        path: shan,
+      id: '6632930223fbd5822d22dfc5',
+      path: shan,
     },
     {
-        id: 3,
-        path: ray,
+      id: '6632937223fbd5822d22dfc7',
+      path: ray,
     },
     {
-        id: 4,
-        path: dibya,
+      id: '663293aa23fbd5822d22dfca',
+      path: dibya,
     },
     {
-        id: 5,
-        path: rish,
+      id: '663293d623fbd5822d22dfcc',
+      path: rish,
     },
 ]
 
 export const AnswerCard = ({ question, answers, users, currentUser }) => {
+    const dispatch=useDispatch();
     const initialState = {
         isFollow: false,
         isLike: false,
@@ -53,7 +55,7 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
         isSeeMore: false,
         isEmoji: false
     };
-
+    
     const [state, setState] = useState(initialState);
     const { isFollow, isLike, isComment, isShare, isOptions, isSave, isSeeMore, isEmoji } = state;
 
@@ -69,15 +71,21 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
     }
 
     const submitComment = () => {
-        if (commentRef.current) {
-            console.log(commentRef.current.value);
+        if (commentRef.current && commentText.trim() !== '') {
             let newComment = {
                 id: currentUser._id,
                 text: commentRef.current.value
             }
-            question.comments.push(newComment)
+            const currentComments=question.comments;
+            const updatedComments=[...currentComments, newComment]
+            dispatch(updateQuestionComments(question._id,updatedComments)).then(()=>{
+                setCommentText("");
+            })
+            .catch((error) => {
+                console.error('Error updating comments in Frontend:', error);
+            });
+            // question.comments.push(newComment)
         }
-        setCommentText("");
     }
     const deleteComment = (text) => {
         const commentIndex = question.comments.findIndex((com) => com.text === text)
@@ -87,7 +95,8 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
         toggleState('isComment')
     }
 
-    const answer = answers.filter((ans) => ans.question_id === question._id)
+    const answer = answers.filter((ans) => ans.question === question._id)
+
     const openQuestion=()=>{
         console.log(`question no. ${question._id} opened!!`);
     }
@@ -95,19 +104,19 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
     // the answer with the most upvotes
     let mostUpvotedAnswer = {
         _id: 0,
-        question_id: 0,
-        user_id: 0,
+        question: 0,
+        user: 0,
         body: "",
-        upvotes: 0,
-        downvotes: 0,
-        created_at: "",
-        updated_at: ""
+        votes: 0,
+        createdAt: "",
+        updatedAt: "",
+        __v: 0
     };
-    let maxUpvotes = -1;
+    let maxVotes = -1;
     for (const ans of answer) {
-        if (ans.upvotes > maxUpvotes) {
+        if (ans.votes > maxVotes) {
             mostUpvotedAnswer = ans;
-            maxUpvotes = ans.upvotes;
+            maxVotes = ans.votes;
         }
     }
 
@@ -117,7 +126,6 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
         name: "",
         email: "",
         password: "",
-        pic: "",
         college: "",
         verified: false,
         department: "",
@@ -126,19 +134,16 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
         followers: [],
         following: [],
         socials: [
-            { linkedin: "" },
-            { github: "" },
-            { portfolio: "" },
-            { twitter: "" }
+            ""
         ],
         question_asked: [],
         answers_given: [],
-        created_at: "",
-        updated_at: ""
+        createdAt: "",
+        updatedAt: "",
+        __v: 0
     }
-    if (mostUpvotedAnswer.user_id !== 0) {
-        answerUser = users.find((userData) => userData._id === mostUpvotedAnswer.user_id)
-    }
+
+    answerUser = users.find((userData) => userData._id === mostUpvotedAnswer.user)
 
     return (
         <div className={`${layout.ans}`}>
@@ -174,8 +179,7 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
                                     </div>
                                     {answerUser.verified && (
                                         <MdVerified className="text-rose-1 mx-1 text-base md:text-2xl" />
-                                    )
-                                    }
+                                    )}
                                     {(currentUser._id !== answerUser._id) && (
                                         <>
                                             {isFollow ? (
@@ -203,9 +207,9 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
                                     <div className="text-rose-2 text-2xs md:text-base">{answerUser.college}</div>
                                 </div>
                                 <div className={`flex justify-end justify-items-end w-28 md:w-36`}>
-                                    <GoDotFill className="text-beige text-xs sm:text-base" />
+                                    <GoDotFill className="text-beige text-xs md:text-base" />
                                     <div className="text-beige text-3xs md:text-xs">
-                                        {mostUpvotedAnswer.created_at ? formatDistanceToNow(new Date(mostUpvotedAnswer.created_at), { addSuffix: true }) : ""}
+                                        {mostUpvotedAnswer.createdAt ? formatDistanceToNow(new Date(mostUpvotedAnswer.createdAt), { addSuffix: true }) : ""}
                                     </div>
                                 </div>
                             </div>

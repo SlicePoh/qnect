@@ -29,7 +29,8 @@ exports.getQuestion= catchAsync(async (req,res,next)=>{
 // create a new question
 exports.addQuestion= catchAsync( async (req,res,next)=>{
     // const{title,likes,comments}=req.body;
-    const question=await Question.create(req.body)
+    await Question.create(req.body)
+    const question=Question.find();
     res.status(201).json({
         status: 'success',
         data: {question}
@@ -38,19 +39,46 @@ exports.addQuestion= catchAsync( async (req,res,next)=>{
 
 // delete a question
 exports.deleteQuestion= catchAsync(async (req,res,next)=>{
-    await Question.findByIdAndDelete(req.params.id)
-    res.status(200).json({
-        status: "success"
-    })
-})
-
-// update a question
-exports.updateQuestion= catchAsync(async (req,res,next)=>{
-    // const{title,likes,comments}=req.body;
-    // const newQuestion={}
-    const question=await Question.findByIdAndUpdate(req.params.id,req.body,{new: true})
+    await Question.findByIdAndDelete(req.params.id);
+    const question=Question.find();
     res.status(200).json({
         status: "success",
         data: {question}
     })
 })
+
+// update a question
+exports.updateQuestion= catchAsync(async (req,res,next)=>{
+    
+    await Question.findByIdAndUpdate(req.params.id,req.body,{new: true})
+    const question= Question.find();
+    res.status(200).json({
+        status: "success",
+        data: {question}
+    })
+})
+
+// Update comments of a question
+exports.updateQuestionComments = catchAsync(async (req, res, next) => {
+
+    // Find the question by ID and update the comments array
+    const question = await Question.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true }
+    );
+
+    if (!question) {
+        return res.status(404).json({
+            status: 'fail',
+            message: 'Question not found',
+        });
+    }
+    const questions= await Question.find();
+    res.status(200).json({
+        status: 'success',
+        data: {
+            question,
+        },
+    });
+});

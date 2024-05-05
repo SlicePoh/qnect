@@ -19,16 +19,33 @@ export const addQuestion = createAsyncThunk('addQuestion',async ()=>{
     });
     return response.json();
 })
-export const updateQuestion = createAsyncThunk('updateQuestion', async (payload) => {
-    const { id, newData } = payload;
+export const updateQuestion = createAsyncThunk('updateQuestion', async (id,newData) => {
     const response = await fetch(`${IP}/question/${id}`, {
         method: 'PATCH',
+        body: JSON.stringify(newData),
         headers: {
             'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newData)
+        }
     });
     return response.json();
+});
+export const updateQuestionComments = createAsyncThunk('updateQuestionComments', async (payload, thunkAPI) => {
+    const { id, text } = payload;
+    try {
+        const response = await fetch(`${IP}/question/${id}/comments`, {
+            method: 'PATCH',
+            body: JSON.stringify(text),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        if (!response.ok) {
+            throw new Error('Failed to update comments');
+        }
+        return await response.json();
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error);
+    }
 });
 
 export const deleteQuestion = createAsyncThunk('deleteQuestion', async (id) => {
@@ -41,7 +58,7 @@ export const deleteQuestion = createAsyncThunk('deleteQuestion', async (id) => {
 const questionSlice = createSlice({
     name: 'question',
     initialState: {
-        question: null,
+        question: [],
         status: "idle",
         error: null
     },
@@ -68,7 +85,7 @@ const questionSlice = createSlice({
             })
             .addCase(getQuestion.fulfilled, (state,action)=>{
                 state.status = 'succeeded';
-                state.Question = action.payload;
+                state.question = action.payload;
                 console.log(state.Question,'and its',state.status);
             })
             .addCase(getQuestion.rejected, (state,action)=>{
@@ -82,7 +99,7 @@ const questionSlice = createSlice({
             })
             .addCase(addQuestion.fulfilled, (state,action)=>{
                 state.status = 'succeeded';
-                state.Question = action.payload;
+                state.question = action.payload;
                 console.log(state.Question,'added successfully');
             })
             .addCase(addQuestion.rejected, (state,action)=>{
@@ -96,7 +113,7 @@ const questionSlice = createSlice({
             })
             .addCase(updateQuestion.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                state.Question = action.payload;
+                state.question = action.payload;
                 console.log('Question edited successfully');
             })
             .addCase(updateQuestion.rejected, (state, action) => {
@@ -104,12 +121,29 @@ const questionSlice = createSlice({
                 state.error = action.error.message;
                 console.log('Error editing question:', state.error);
             })
+
+            // update question comments
+            .addCase(updateQuestionComments.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(updateQuestionComments.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+                state.question = action.payload;
+                console.log('Question comments updated successfully');
+            })
+            .addCase(updateQuestionComments.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.error.message;
+                console.log('Error updating question comments:', state.error);
+            })
+
             // delete question
             .addCase(deleteQuestion.pending, (state) => {
                 state.status = 'loading';
             })
-            .addCase(deleteQuestion.fulfilled, (state) => {
+            .addCase(deleteQuestion.fulfilled, (state,action) => {
                 state.status = 'succeeded';
+                state.question=action.payload;
                 console.log('Question deleted successfully');
             })
             .addCase(deleteQuestion.rejected, (state, action) => {

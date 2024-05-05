@@ -7,12 +7,12 @@ const answersSchema=new Schema({
         type: String,
         required: true,
     },
-    question:{
+    question_id:{
         type: SchemaTypes.ObjectId,
         ref: 'Question',
         required: true,
     },
-    user:{
+    user_id:{
         type: SchemaTypes.ObjectId,
         ref: 'User',
         required: true,
