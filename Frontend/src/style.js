@@ -63,7 +63,7 @@ export const layout = {
 
 
     deets: `${styles.flexSS} w-full px-4`,
-    question: `${styles.flexBetween} text-base md:text-xl text-white px-4 my-4`,
+    question: `${styles.flexBetween} w-full text-base md:text-xl text-white px-4 my-4`,
     tagset: `${styles.flexCenter} w-1/12 flex-col hidden lg:block`,
     answer: `${styles.flexBetween} px-4 text-xs md:text-base`,
     likes: `${styles.flexBetween} rounded-b-xl bg-dark-3 w-full h-12 p-1 md:p-4 mt-2 md:mt-4`,

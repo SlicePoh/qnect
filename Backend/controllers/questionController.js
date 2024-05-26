@@ -8,54 +8,94 @@ const searchItem='minus'
 //get all questions
 exports.getAllQuestions= async (req,res,next)=>{
     // const question_id=req.question._id
-    const features=new ApiFeatures(Question.find(),req.query).search()
-    const question = await features.query
-    res.status(200).json({
-        status: 'success',
-        data: {question}
-        }
-    );    
+   try{ 
+        const features=new ApiFeatures(Question.find(),req.query).search()
+        const question = await features.query
+        res.status(200).json({
+            status: 'success',
+            data: {question}
+            }
+        ); 
+    }  
+    catch(error){
+        res.status(404).json({
+            status: "failed",
+            error
+        })
+    } 
 }
 
 // get a single question
 exports.getQuestion= catchAsync(async (req,res,next)=>{
-    const question=await Question.findById(req.params.id)
-    res.status(200).json({
-        status: 'success',
-        data: {question}
-    })
+    try{
+        const question=await Question.findById(req.params.id)
+        res.status(200).json({
+            status: 'success',
+            data: {question}
+        })
+    }
+    catch(error){
+        res.status(404).json({
+            status: "failed",
+            error
+        })
+    }
 })
 
 // create a new question
 exports.addQuestion= catchAsync( async (req,res,next)=>{
-    // const{title,likes,comments}=req.body;
-    await Question.create(req.body)
-    const question=Question.find();
-    res.status(201).json({
-        status: 'success',
-        data: {question}
-    })
+    try{
+        await Question.create(req.body)
+        const question=Question.find();
+        res.status(201).json({
+            status: 'success',
+            data: {question}
+        })
+    }
+    catch(error){
+        res.status(404).json({
+            status: "failed",
+            error
+        })
+    }
 })
 
 // delete a question
 exports.deleteQuestion= catchAsync(async (req,res,next)=>{
-    await Question.findByIdAndDelete(req.params.id);
-    const question=Question.find();
-    res.status(200).json({
-        status: "success",
-        data: {question}
-    })
+    try{
+        await Question.findByIdAndDelete(req.params.id);
+        
+        const question=Question.find();
+        res.status(200).json({
+            status: "success",
+            data: {question}
+        })
+    }
+    catch(error){
+        res.status(404).json({
+            status: "failed",
+            error
+        })
+    }
 })
 
 // update a question
 exports.updateQuestion= catchAsync(async (req,res,next)=>{
     
-    await Question.findByIdAndUpdate(req.params.id,req.body,{new: true})
-    const question= Question.find();
-    res.status(200).json({
-        status: "success",
-        data: {question}
-    })
+    try{
+        await Question.findByIdAndUpdate(req.params.id,req.body,{new: true})
+        const question= Question.find();
+        res.status(200).json({
+            status: "success",
+            data: {question}
+        })
+    }
+    catch(error){
+        res.status(404).json({
+            status: "failed",
+            error
+        })
+    }
 })
 
 // Update comments of a question

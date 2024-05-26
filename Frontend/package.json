@@ -5,6 +5,7 @@
   "proxy": "http://localhost:7000/",
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@gsap/react": "^2.1.1",
     "@iconscout/react-unicons": "^2.0.2",
     "@reduxjs/toolkit": "^2.2.3",
     "@testing-library/jest-dom": "^5.17.0",

@@ -20,6 +20,8 @@ import EmojiPicker from 'emoji-picker-react';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import { updateQuestion, updateQuestionComments } from '../redux/slices/Question';
 import { useDispatch } from 'react-redux';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 const imageID = [
     {
       id: '6632922623fbd5822d22dfb9',
@@ -61,6 +63,8 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
 
     const [commentText, setCommentText] = useState("")
     const commentRef = useRef();
+    const likeButtonRef = useRef();
+    const containerRef = useRef();
 
     const toggleState = (key) => {
         setState((prevState) => ({ ...prevState, [key]: !prevState[key] }));
@@ -143,10 +147,40 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
         __v: 0
     }
 
-    answerUser = users.find((userData) => userData._id === mostUpvotedAnswer.user)
+    answerUser = users.find((userData) => userData._id === mostUpvotedAnswer.user);
+
+    const { contextSafe } = useGSAP(()=>{
+   
+    },{scope: containerRef});
+  
+    const hoverLikeChange = contextSafe((e) => {
+      
+      if(e.target.value === ''){
+        gsap.to(".enterQuestionButton",{
+          opacity: 0,
+          x: 30,
+          ease: "power1.inOut",
+          duration: 0.3,
+          onComplete: () => {
+            likeButtonRef.current.classList.add('hidden');
+          }
+        })
+      }
+      else{
+        gsap.to(".enterQuestionButton",{
+          opacity: 1,
+          x: 0,
+          ease: "power1.inOut",
+          duration: 0.3,
+          onStart: () => {
+            likeButtonRef.current.classList.remove('hidden');
+          }
+        })
+      }
+    });
 
     return (
-        <div className={`${layout.ans}`}>
+        <div ref={containerRef} className={`${layout.ans}`}>
 
             <div className={`${layout.question}`}>
                 <div className="w-11/12">
@@ -244,7 +278,7 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
 
             <div className={`${layout.likes}`}>
                 <div className={`${s.flexCenter}`}>
-                    <button onClick={() => toggleState('isLike')}>
+                    <button ref={likeButtonRef} onClick={() => toggleState('isLike')}>
                         {isLike ? (
                             <RiHeart2Fill className={`${s.icon4}`} />
                         ) : (

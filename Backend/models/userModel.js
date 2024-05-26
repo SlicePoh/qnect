@@ -20,7 +20,6 @@ const userSchema=new Schema({
     },
     // image:{
     //     type: Object,
-
     // },
     college:{
         type: String,

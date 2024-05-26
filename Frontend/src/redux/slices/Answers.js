@@ -49,7 +49,6 @@ const answerSlice = createSlice({
         status: 'idle',
         error: null
     },
-    // data: "",
     extraReducers: (builder)=>{
         builder
             // get all answers
@@ -118,7 +117,6 @@ const answerSlice = createSlice({
             .addCase(deleteAnswer.fulfilled, (state,action) => {
                 state.status = 'succeeded';
                 state.answers = action.payload;
-                // state.answers = state.answers.filter(ans => ans._id !== action.meta.arg);
                 console.log('Answer deleted successfully');
             })
             .addCase(deleteAnswer.rejected, (state, action) => {
