@@ -11,7 +11,6 @@ const questionsSchema=new Schema({
         type: SchemaTypes.ObjectId,
         ref: 'User',
         required: true,
-        unique: true,
     },
     likes:{
         type: Number,
