@@ -19,10 +19,11 @@ export const addQuestion = createAsyncThunk('addQuestion',async ()=>{
     });
     return response.json();
 })
-export const updateQuestion = createAsyncThunk('updateQuestion', async (id,newData) => {
-    const response = await fetch(`${IP}/question/${id}`, {
+export const updateQuestion = createAsyncThunk('updateQuestion', async (payload) => {
+    console.log(payload.id);
+    const response = await fetch(`${IP}/question/${payload.id}`, {
         method: 'PATCH',
-        body: JSON.stringify(newData),
+        body: JSON.stringify(payload.newData),
         headers: {
             'Content-Type': 'application/json'
         }

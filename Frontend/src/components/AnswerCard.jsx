@@ -22,6 +22,7 @@ import { updateQuestion, updateQuestionComments } from '../redux/slices/Question
 import { useDispatch } from 'react-redux';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+
 const imageID = [
     {
       id: '6632922623fbd5822d22dfb9',
@@ -64,10 +65,18 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
     const [commentText, setCommentText] = useState("")
     const commentRef = useRef();
     const likeButtonRef = useRef();
+    const commentButtonRef = useRef();
+    const viewButtonRef = useRef();
+    const shareButtonRef = useRef();
     const containerRef = useRef();
 
     const toggleState = (key) => {
         setState((prevState) => ({ ...prevState, [key]: !prevState[key] }));
+        if (key === 'isLike') {
+            const newLikes = question.likes + (state.isLike ? -1 : 1);
+            console.log(newLikes);
+            dispatch(updateQuestion({ id: question._id, newData: { likes: newLikes } }));
+        }
     };
 
     const handleEmote = (event, emojiObject) => {
@@ -146,39 +155,43 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
         updatedAt: "",
         __v: 0
     }
-
-    answerUser = users.find((userData) => userData._id === mostUpvotedAnswer.user);
+    if(mostUpvotedAnswer){
+        answerUser = users.find((userData) => userData._id === mostUpvotedAnswer.user);
+    }
 
     const { contextSafe } = useGSAP(()=>{
    
     },{scope: containerRef});
   
-    const hoverLikeChange = contextSafe((e) => {
-      
-      if(e.target.value === ''){
-        gsap.to(".enterQuestionButton",{
-          opacity: 0,
-          x: 30,
-          ease: "power1.inOut",
-          duration: 0.3,
-          onComplete: () => {
-            likeButtonRef.current.classList.add('hidden');
-          }
-        })
-      }
-      else{
-        gsap.to(".enterQuestionButton",{
-          opacity: 1,
-          x: 0,
-          ease: "power1.inOut",
-          duration: 0.3,
-          onStart: () => {
-            likeButtonRef.current.classList.remove('hidden');
-          }
-        })
-      }
+    const handleLikeButtonEnter = contextSafe(() => {
+        const tl= gsap.timeline();
+        tl.to(likeButtonRef.current, { scale: 1.1, rotation: 15, y:-2, duration: 0.1, ease: 'expo.inOut' }); 
+        tl.to(likeButtonRef.current, { scale: 1.2, rotation: -15, y:-2, duration: 0.1, ease: 'expo.inOut' }); 
+        tl.to(likeButtonRef.current, { scale: 1, rotation: 0, y:0, duration: 0.1, ease: 'expo.inOut' });
+    });
+    const handleCommentButtonEnter = contextSafe(() => {
+        const tl= gsap.timeline();
+        tl.to(commentButtonRef.current, { scale: 1.1, rotation: 15, y:-2, duration: 0.1, ease: 'expo.inOut' }); 
+        tl.to(commentButtonRef.current, { scale: 1.2, rotation: -15, y:-2, duration: 0.1, ease: 'expo.inOut' }); 
+        tl.to(commentButtonRef.current, { scale: 1, rotation: 0, y:0, duration: 0.2, ease: 'expo.inOut' });
+    });
+    const handleViewButtonEnter = contextSafe(() => {
+        const tl= gsap.timeline();
+        tl.to(viewButtonRef.current, { scale: 1.1, rotation: 15, y:-2, duration: 0.1, ease: 'expo.inOut' }); 
+        tl.to(viewButtonRef.current, { scale: 1.2, rotation: -15, y:-2, duration: 0.1, ease: 'expo.inOut' }); 
+        tl.to(viewButtonRef.current, { scale: 1, rotation: 0, y:0, duration: 0.2, ease: 'expo.inOut' });
+    });
+    const handleShareButtonEnter = contextSafe(() => {
+        const tl= gsap.timeline();
+        tl.to(shareButtonRef.current, { scale: 1.1, rotation: 15, y:-2, duration: 0.1, ease: 'expo.inOut' }); 
+        tl.to(shareButtonRef.current, { scale: 1.2, rotation: -15, y:-2, duration: 0.1, ease: 'expo.inOut' }); 
+        tl.to(shareButtonRef.current, { scale: 1, rotation: 0, y:0, duration: 0.2, ease: 'expo.inOut' });
     });
 
+    
+
+    
+    
     return (
         <div ref={containerRef} className={`${layout.ans}`}>
 
@@ -199,7 +212,7 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
                     <FiEdit className={`${s.icon5} `} />
                 </button>
             </div>
-            {answerUser._id !== 0 && (
+            {answerUser._id !== 0 &&(
                 <>
                     <div className={`${layout.deets}`}>
                         <button>
@@ -278,7 +291,7 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
 
             <div className={`${layout.likes}`}>
                 <div className={`${s.flexCenter}`}>
-                    <button ref={likeButtonRef} onClick={() => toggleState('isLike')}>
+                    <button ref={likeButtonRef}  onMouseEnter={handleLikeButtonEnter} onClick={() => toggleState('isLike')}>
                         {isLike ? (
                             <RiHeart2Fill className={`${s.icon4}`} />
                         ) : (
@@ -289,21 +302,22 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
                         {question.likes}
                     </div>
                     <button onClick={() => {
-                        toggleState('isComment')
+                        toggleState('isComment') 
                         setState((prevState) => ({ ...prevState, showEmoji: false }))
-                    }}>
+                    }} ref={commentButtonRef}  onMouseEnter={handleCommentButtonEnter}>
                         <BiCommentDetail className={`${s.icon4}`} />
                     </button>
                     <div className={`${s.likes_num}`}>
                         {question.comments.length}
                     </div>
-
-                    <FaEye className={`${s.icon4}`} />
+                    <button ref={viewButtonRef}  onMouseEnter={handleViewButtonEnter}>
+                        <FaEye className={`${s.icon4}`} />
+                    </button>
 
                     <div className={`${s.likes_num}`}>
                         {question.views}
                     </div>
-                    <button onClick={() => toggleState('isShare')}>
+                    <button  ref={shareButtonRef}  onMouseEnter={handleShareButtonEnter} onClick={() => toggleState('isShare')}>
                         <BiShare className={`${s.icon4}`} />
                     </button>
                     <div className={`${s.likes_num}`}>

@@ -33,19 +33,14 @@ export const Jobs = () => {
   }, [userSelect]);
 
   const handleSubmit = (e) => {
-    // console.log(user_id);
-    // console.log(question_id);
     e.preventDefault();
     dispatch(addAnswer({ question_id, user_id, body, votes })).then(() => {
-      // Reset form inputs after successfully adding an answer
+  
       setBody('');
       setVotes(0);
     }).catch((error) => {
       console.error('Error adding answer in the frontend:', error);
     });
-    // dispatch(addAnswer({ question_id, user_id, body, votes }));
-    // setBody('');
-    // setVotes(0);
   };
 
   const handleDelete = (id) => {
