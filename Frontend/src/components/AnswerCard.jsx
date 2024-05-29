@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import s, { layout } from '../style'
 import { RiDeleteBin5Fill, RiHeart2Fill, RiHeart2Line } from "react-icons/ri";
 import { BiCommentDetail, BiShare } from 'react-icons/bi'
-import { FaEye } from 'react-icons/fa'
+//import { FaEye } from 'react-icons/fa'
 import { FaImage, FaRegFaceLaugh } from "react-icons/fa6";
 import { MdVerified } from 'react-icons/md'
 import { GoDotFill } from 'react-icons/go'
@@ -14,14 +14,16 @@ import shan from '../assets/profiles/shanit.jpg'
 import dibya from '../assets/profiles/dibya.jpeg'
 import ray from '../assets/profiles/rayoti.jpg'
 import rish from '../assets/profiles/rish.jpg'
+//import kathal from '../assets/profiles/kathal.jpg'
 import { ShareCard } from './modals/ShareCard'
 import { MoreInfo } from './modals/MoreInfo'
 import EmojiPicker from 'emoji-picker-react';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import { updateQuestion, updateQuestionComments } from '../redux/slices/Question';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { CgProfile } from 'react-icons/cg';
 
 const imageID = [
     {
@@ -46,8 +48,10 @@ const imageID = [
     },
 ]
 
+
 export const AnswerCard = ({ question, answers, users, currentUser }) => {
     const dispatch=useDispatch();
+    const userSelect = useSelector((state) => state.user);
     const initialState = {
         isFollow: false,
         isLike: false,
@@ -58,6 +62,7 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
         isSeeMore: false,
         isEmoji: false
     };
+ 
     
     const [state, setState] = useState(initialState);
     const { isFollow, isLike, isComment, isShare, isOptions, isSave, isSeeMore, isEmoji } = state;
@@ -66,7 +71,7 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
     const commentRef = useRef();
     const likeButtonRef = useRef();
     const commentButtonRef = useRef();
-    const viewButtonRef = useRef();
+    //const viewButtonRef = useRef();
     const shareButtonRef = useRef();
     const containerRef = useRef();
 
@@ -75,7 +80,7 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
         if (key === 'isLike') {
             const newLikes = question.likes + (state.isLike ? -1 : 1);
             console.log(newLikes);
-            dispatch(updateQuestion({ id: question._id, newData: { likes: newLikes } }));
+            dispatch(updateQuestion({ id: question._id, newData: { likes: newLikes },token: userSelect.curr.token }));
         }
     };
 
@@ -158,9 +163,15 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
     if(mostUpvotedAnswer){
         answerUser = users.find((userData) => userData._id === mostUpvotedAnswer.user);
     }
+    if (userSelect.curr && userSelect.user && userSelect.status === 'succeeded') {
+        currentUser = userSelect.user.data.user.find((userData) => userData._id === userSelect.curr.data._id)
+     }
+
+    const currentUserImage = imageID.find((image) => currentUser._id === image.id);
+    const imagePath = currentUserImage ? currentUserImage.path : null;
+    const profileColor = useSelector((state) => state.profile.colors[currentUser._id]);
 
     const { contextSafe } = useGSAP(()=>{
-   
     },{scope: containerRef});
   
     const handleLikeButtonEnter = contextSafe(() => {
@@ -175,22 +186,18 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
         tl.to(commentButtonRef.current, { scale: 1.2, rotation: -15, y:-2, duration: 0.1, ease: 'expo.inOut' }); 
         tl.to(commentButtonRef.current, { scale: 1, rotation: 0, y:0, duration: 0.2, ease: 'expo.inOut' });
     });
-    const handleViewButtonEnter = contextSafe(() => {
-        const tl= gsap.timeline();
-        tl.to(viewButtonRef.current, { scale: 1.1, rotation: 15, y:-2, duration: 0.1, ease: 'expo.inOut' }); 
-        tl.to(viewButtonRef.current, { scale: 1.2, rotation: -15, y:-2, duration: 0.1, ease: 'expo.inOut' }); 
-        tl.to(viewButtonRef.current, { scale: 1, rotation: 0, y:0, duration: 0.2, ease: 'expo.inOut' });
-    });
+    // const handleViewButtonEnter = contextSafe(() => {
+    //     const tl= gsap.timeline();
+    //     tl.to(viewButtonRef.current, { scale: 1.1, rotation: 15, y:-2, duration: 0.1, ease: 'expo.inOut' }); 
+    //     tl.to(viewButtonRef.current, { scale: 1.2, rotation: -15, y:-2, duration: 0.1, ease: 'expo.inOut' }); 
+    //     tl.to(viewButtonRef.current, { scale: 1, rotation: 0, y:0, duration: 0.2, ease: 'expo.inOut' });
+    // });
     const handleShareButtonEnter = contextSafe(() => {
         const tl= gsap.timeline();
         tl.to(shareButtonRef.current, { scale: 1.1, rotation: 15, y:-2, duration: 0.1, ease: 'expo.inOut' }); 
         tl.to(shareButtonRef.current, { scale: 1.2, rotation: -15, y:-2, duration: 0.1, ease: 'expo.inOut' }); 
         tl.to(shareButtonRef.current, { scale: 1, rotation: 0, y:0, duration: 0.2, ease: 'expo.inOut' });
     });
-
-    
-
-    
     
     return (
         <div ref={containerRef} className={`${layout.ans}`}>
@@ -281,7 +288,7 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
                             </div>
                         </div>
                         <div className={`${layout.tagset}`}>
-                            {question.tags.map((tag, i) => (
+                            {question.tags && question.tags.map((tag, i) => (
                                 <div key={i} className={`${s.tags}`}>{tag}</div>
                             ))}
                         </div>
@@ -298,25 +305,29 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
                             <RiHeart2Line className={`${s.icon4}`} />
                         )}
                     </button>
-                    <div className={`${s.likes_num}`}>
-                        {question.likes}
-                    </div>
+                    {question.likes && (
+                        <div className={`${s.likes_num}`}>
+                            {question.likes}
+                        </div>
+                    )}
                     <button onClick={() => {
-                        toggleState('isComment') 
-                        setState((prevState) => ({ ...prevState, showEmoji: false }))
-                    }} ref={commentButtonRef}  onMouseEnter={handleCommentButtonEnter}>
+                        toggleState('isComment');
+                        setState((prevState) => ({ ...prevState, showEmoji: false }));
+                    }} ref={commentButtonRef} onMouseEnter={handleCommentButtonEnter}>
                         <BiCommentDetail className={`${s.icon4}`} />
                     </button>
-                    <div className={`${s.likes_num}`}>
-                        {question.comments.length}
-                    </div>
-                    <button ref={viewButtonRef}  onMouseEnter={handleViewButtonEnter}>
+                    {question.comments && question.comments.length > 0 && (
+                        <div className={`${s.likes_num}`}>
+                            {question.comments.length}
+                        </div>
+                    )}
+                    {/* <button ref={viewButtonRef}  onMouseEnter={handleViewButtonEnter}>
                         <FaEye className={`${s.icon4}`} />
-                    </button>
+                    </button> */}
 
-                    <div className={`${s.likes_num}`}>
+                    {/* <div className={`${s.likes_num}`}>
                         {question.views}
-                    </div>
+                    </div> */}
                     <button  ref={shareButtonRef}  onMouseEnter={handleShareButtonEnter} onClick={() => toggleState('isShare')}>
                         <BiShare className={`${s.icon4}`} />
                     </button>
@@ -332,7 +343,12 @@ export const AnswerCard = ({ question, answers, users, currentUser }) => {
                 <div className={`${layout.comments}`}>
                     <div className={`${layout.myComments}`}>
                         {/* <img src={beb} alt="myicon" className={`${s.profilePic}`} /> */}
-                        <img src={imageID.find((image) => currentUser._id === image.id).path} alt="profile" className={`${s.profilePic}`}></img>
+                        {imagePath ? (
+                            <img src={imagePath} alt="profile" className={`${s.profilePic}`} />
+                        ) : (
+                            <CgProfile className={`${profileColor} text-3xl md:text-5xl mr-2`} />
+                        )}
+                        
                         <div className={`${layout.comments_button}`}>
                             <input ref={commentRef} placeholder="Add a comment..." type="text" value={commentText} onChange={e => setCommentText(e.target.value)} className={`${s.comments_text}`} />
                             <button onClick={() => toggleState('isEmoji')}>

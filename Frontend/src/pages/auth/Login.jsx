@@ -1,23 +1,25 @@
-import React, { useState } from 'react';
+import React, {  useState } from 'react';
 import login from '../../assets/auth/Login.svg';
 import { FcGoogle } from 'react-icons/fc';
 import iconfacebook from '../../assets/auth/icon_facebook.svg';
 import { FaGithub } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
 import s from '../../style'
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../../redux/slices/User';
 
 export const Login = () => {
+    const dispatch=useDispatch();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
     const navigate= useNavigate();
-
+    
     const handleLogin = () => {
         // Add your authentication logic here
-        console.log('Email:', email);
-        console.log('Password:', password);
-        console.log('Remember Me:', rememberMe);
-      navigate("/main");
+        dispatch(loginUser({email: email,password: password}));
+        navigate("/main");
     };
 
     return (

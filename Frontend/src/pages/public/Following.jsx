@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import s, { layout } from '../../style'
 import { useDispatch, useSelector } from 'react-redux';
 import { addQuestion, deleteQuestion, getAllQuestions } from '../../redux/slices/Question';
@@ -9,29 +9,30 @@ export const Following = () => {
   const dispatch = useDispatch();
   const questionSelect = useSelector((state) => state.question);
   const userSelect = useSelector((state) => state.user);
-
+  const token = useSelector((state) => state.auth.token);
   const [title, setTitle] = useState('');
   const [likes, setLikes] = useState(0);
   const [user_id, setUser_id] = useState('')
+  const currentUser=useRef();
 
   useEffect(() => {
-    dispatch(getAllQuestions()).catch((error) => {
+    dispatch(getAllQuestions(token)).catch((error) => {
       console.error('Error fetching questions in the frontend:', error);
     });
     dispatch(getAllUsers()).catch((error) => {
       console.error('Error fetching users in the frontend:', error);
     });
-  }, [dispatch]);
+  }, [dispatch,token]);
   useEffect(() => {
     if (userSelect.user && userSelect.status === 'succeeded') {
-      const currentUser = userSelect.user.data.user.find((userData) => userData._id === '6632937223fbd5822d22dfc7')
-      setUser_id(currentUser._id);
+      currentUser.current = userSelect.user.data.user.find((u) => u._id === userSelect.curr.data._id)
+      setUser_id(currentUser.current._id);
     }
   }, [userSelect]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addQuestion({ user_id, title, likes })).then(() => {
+    dispatch(addQuestion({data: { user_id, title, likes },token: token})).then(() => {
 
       setTitle('');
       setLikes(0);
@@ -57,7 +58,7 @@ export const Following = () => {
                 {que.title}
               </div>
               {que.likes}
-              {que.tags.map((tag, i) => (
+              {que.tags && que.tags.map((tag, i) => (
                 <div key={i} className="text-sm text-rose-1">
                   {tag}
                 </div>

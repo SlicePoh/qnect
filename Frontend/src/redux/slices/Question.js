@@ -1,43 +1,60 @@
 import {createSlice,createAsyncThunk} from '@reduxjs/toolkit';
 import {IP} from '../../components/IPConfig'
 
-export const getAllQuestions = createAsyncThunk('getAllQuestions',async ()=>{
+export const getAllQuestions = createAsyncThunk('getAllQuestions',async (token)=>{
     const response = await fetch(`${IP}/question`,{
-        method: 'GET'
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
     });
     return response.json();
 })
-export const getQuestion = createAsyncThunk('getQuestion',async (id)=>{
+export const getQuestion = createAsyncThunk('getQuestion',async (payload)=>{
+    const {id,token}= payload;
     const response = await fetch(`${IP}/question/${id}`,{
-        method: 'GET'
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
     });
     return response.json();
 })
-export const addQuestion = createAsyncThunk('addQuestion',async ()=>{
+export const addQuestion = createAsyncThunk('addQuestion',async (payload)=>{
+    const {data, token} = payload;
     const response= await fetch(`${IP}/question`,{
-        method: 'POST'
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(data)
     });
     return response.json();
 })
 export const updateQuestion = createAsyncThunk('updateQuestion', async (payload) => {
-    console.log(payload.id);
-    const response = await fetch(`${IP}/question/${payload.id}`, {
+    const { id, newData,token } = payload;
+    const response = await fetch(`${IP}/question/${id}`, {
         method: 'PATCH',
-        body: JSON.stringify(payload.newData),
         headers: {
-            'Content-Type': 'application/json'
-        }
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(newData)
     });
     return response.json();
 });
 export const updateQuestionComments = createAsyncThunk('updateQuestionComments', async (payload, thunkAPI) => {
-    const { id, text } = payload;
+    const { id, text,token } = payload;
     try {
         const response = await fetch(`${IP}/question/${id}/comments`, {
             method: 'PATCH',
             body: JSON.stringify(text),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             }
         });
         if (!response.ok) {
@@ -49,9 +66,14 @@ export const updateQuestionComments = createAsyncThunk('updateQuestionComments',
     }
 });
 
-export const deleteQuestion = createAsyncThunk('deleteQuestion', async (id) => {
+export const deleteQuestion = createAsyncThunk('deleteQuestion', async (payload) => {
+    const {id,token}= payload;
     const response = await fetch(`${IP}/question/${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
     });
     return response.json();
 });
@@ -101,7 +123,7 @@ const questionSlice = createSlice({
             .addCase(addQuestion.fulfilled, (state,action)=>{
                 state.status = 'succeeded';
                 state.question = action.payload;
-                console.log(state.Question,'added successfully');
+                console.log(state.question,'added successfully');
             })
             .addCase(addQuestion.rejected, (state,action)=>{
                 state.status = 'failed';

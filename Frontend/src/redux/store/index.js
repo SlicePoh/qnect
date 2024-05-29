@@ -6,12 +6,16 @@ import {configureStore, combineReducers} from '@reduxjs/toolkit';
 import answerSlice from '../slices/Answers'
 import questionSlice from '../slices/Question'
 import userSlice from '../slices/User'
+import authSlice from '../slices/Auth'
+import profileSlice from '../slices/Profile'
 
 // Combine reducers
 const rootReducer = combineReducers({
     question: questionSlice,
     answer: answerSlice,
     user: userSlice,
+    profile: profileSlice,
+    auth: authSlice
 });
 
 // Apply Redux Thunk middleware

@@ -1,10 +1,10 @@
 import React from 'react'
-import { layout } from '../../style'
+import s,{ layout } from '../../style'
 
 export const Mentorships = () => {
   return (
-    <div className={`${layout.hero} item-center w-full h-screen text-center text-5xl`}>
-        No content yet....
+    <div className={`${s.flexCenter} bg-dark-1 item-center w-full h-screen text-center text-5xl`}>
+      coming soon...
     </div>
   )
 }

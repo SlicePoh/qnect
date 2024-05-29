@@ -1,9 +1,13 @@
 import {createSlice,createAsyncThunk} from '@reduxjs/toolkit';
 import {IP} from '../../components/IPConfig'
 
-export const getAllAnswers = createAsyncThunk('getAllAnswers',async ()=>{
+export const getAllAnswers = createAsyncThunk('getAllAnswers',async (token)=>{
     const response = await fetch(`${IP}/answer`,{
-        method: 'GET'
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
     });
     return response.json();
 })
@@ -13,31 +17,39 @@ export const getAnswer = createAsyncThunk('getAnswer',async (id)=>{
     });
     return response.json();
 })
-export const addAnswer = createAsyncThunk('addAnswer',async (data)=>{
+export const addAnswer = createAsyncThunk('addAnswer',async (payload)=>{
+    const {data, token}=payload;
     const response = await fetch(`${IP}/answer`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(data)
     });
     return response.json();
 })
 export const updateAnswer = createAsyncThunk('updateAnswer', async (payload) => {
-    const { id, newData } = payload;
+    const { id, newData,token } = payload;
     const response = await fetch(`${IP}/answer/${id}`, {
         method: 'PATCH',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(newData)
     });
     return response.json();
 });
 
-export const deleteAnswer = createAsyncThunk('deleteAnswer', async (id) => {
+export const deleteAnswer = createAsyncThunk('deleteAnswer', async (payload) => {
+    const {id,token}= payload;
     const response = await fetch(`${IP}/answer/${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
     });
     return response.json();
 });

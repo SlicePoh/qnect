@@ -8,35 +8,24 @@ const searchItem = "minus";
 //get all questions
 exports.getAllQuestions = async (req, res, next) => {
   // const question_id=req.question._id
-  try {
-    const features = new ApiFeatures(Question.find(), req.query).search();
-    const question = await features.query;
-    res.status(200).json({
+  
+  const features = new ApiFeatures(Question.find(), req.query).search();
+  const question = await features.query;
+  res.status(200).json({
       status: "success",
       data: { question },
-    });
-  } catch (error) {
-    res.status(404).json({
-      status: "failed",
-      error,
-    });
-  }
+  });
+
 };
 
 // get a single question
 exports.getQuestion = catchAsync(async (req, res, next) => {
-  try {
-    const question = await Question.findById(req.params.id);
+
+  const question = await Question.findById(req.params.id);
     res.status(200).json({
       status: "success",
       data: { question },
     });
-  } catch (error) {
-    res.status(404).json({
-      status: "failed",
-      error,
-    });
-  }
 });
 
 // create a new question

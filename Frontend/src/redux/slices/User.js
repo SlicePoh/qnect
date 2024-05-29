@@ -1,5 +1,6 @@
 import {createSlice,createAsyncThunk} from '@reduxjs/toolkit';
 import {IP} from '../../components/IPConfig'
+import axios from 'axios'
 
 export const getAllUsers = createAsyncThunk('getAllUsers',async ()=>{
     const response = await fetch(`${IP}/user`,{
@@ -15,7 +16,8 @@ export const getUser = createAsyncThunk('getUser',async (id)=>{
 })
 export const addUser = createAsyncThunk('addUser',async ()=>{
     const response= await fetch(`${IP}/user`,{
-        method: 'POST'
+        method: 'POST',
+        
     });
     return response.json();
 })
@@ -24,7 +26,8 @@ export const updateUser = createAsyncThunk('updateUser', async (payload) => {
     const response = await fetch(`${IP}/user/${id}`, {
         method: 'PATCH',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            // 'Authorization': `Bearer ${user.token}`
         },
         body: JSON.stringify(newData)
     });
@@ -37,13 +40,32 @@ export const deleteUser = createAsyncThunk('deleteUser', async (id) => {
     });
     return response.json();
 });
-
+export const signupUser=createAsyncThunk('signup', async (payload,  { rejectWithValue })=>{
+    
+    try {
+        const response = axios.post(`${IP}/user/signup`,payload);
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        return rejectWithValue(error.response.data);
+    }
+});
+export const loginUser = createAsyncThunk('login', async (payload,  { rejectWithValue }) => {
+    try {
+        const response = await axios.post(`${IP}/user/login`, payload);
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        return rejectWithValue(error.response.data);
+    }
+});
 const userSlice = createSlice({
     name: 'user',
     initialState: {
         user: null,
         status: "idle",
-        error: null
+        error: null,
+        curr: ""
     },
     // data: "",
     extraReducers: (builder)=>{
@@ -116,6 +138,34 @@ const userSlice = createSlice({
                 state.status = 'failed';
                 state.error = action.error.message;
                 console.log('Error deleting User:', state.error);
+            })
+            //sign up user
+            .addCase(signupUser.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(signupUser.fulfilled, (state,action) => {
+                state.status = 'succeeded';
+                state.curr = action.payload;
+                console.log('User signed up successfully',state.curr);
+            })
+            .addCase(signupUser.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.error.message;
+                console.log('Error signing up User:', state.error);
+            })
+            // log in user
+            .addCase(loginUser.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(loginUser.fulfilled, (state,action) => {
+                state.status = 'succeeded';
+                state.curr = action.payload;
+                console.log('User logged in successfully',state.curr);
+            })
+            .addCase(loginUser.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.error.message;
+                console.log('Error logging in User:', state.error);
             });
     }
 })
