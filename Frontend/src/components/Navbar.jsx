@@ -10,6 +10,7 @@ import rish from '../assets/profiles/rish.jpg'
 //import kathal from '../assets/profiles/kathal.jpg'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import logo from '../assets/logo.png'
+import logoname from '../assets/logoname.png'
 import { Link, useNavigate } from 'react-router-dom'
 // import users_data from '../data/json/user_data.json'
 import { useDispatch, useSelector } from 'react-redux'
@@ -77,10 +78,11 @@ export const Navbar = () => {
       {(userSelect.user && userSelect.status==='succeeded') && (
         <>
           <div className={`${layout.navtop}`}>
-            <div className={`${s.flexCenter}`}>
+            <div className={`${s.flexCenter} gap-3`}>
               <Link to="/main">
                 <img src={logo} alt='logo' className={`${s.logo}`}></img>
               </Link>
+              <img src={logoname} alt='logoname' className="w-20 h-auto"></img>
             </div>
 
             <div className={`${s.flexCenter} gap-2`}>

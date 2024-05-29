@@ -18,22 +18,22 @@ export const LeftSidebar = () => {
           <BiHome className={`${s.icon}`}/>
           Home
       </Link>
-      <Link to="/main/following" className={`${layout.route} ${path==="/main/following" ? "bg-rose-3 w-full text-white border-r-8 border-rose-1" : ""}`}>
+      {/* <Link to="/main/following" className={`${layout.route} ${path==="/main/following" ? "bg-rose-3 w-full text-white border-r-8 border-rose-1" : ""}`}>
         <BiUserPlus className={`${s.icon}`}/>
         Following
-      </Link>
-      <Link to="/main/spaces" className={`${layout.route} ${path==="/main/spaces" ? "bg-rose-3 w-full text-white border-r-8 border-rose-1" : ""}`}>
+      </Link> */}
+      {/* <Link to="/main/spaces" className={`${layout.route} ${path==="/main/spaces" ? "bg-rose-3 w-full text-white border-r-8 border-rose-1" : ""}`}>
         <FaUsers className={`${s.icon}`}/>
         Spaces
-      </Link>
-      <Link to="/main/jobs" className={`${layout.route} ${path==="/main/jobs" ? "bg-rose-3 w-full text-white border-r-8 border-rose-1" : ""}`}>
-        <FaBriefcase className={`${s.icon}`}/>
-        Jobs
-      </Link>
+      </Link> */}
       
       <Link to="/main/public" className={`${layout.route} ${path==="/main/public" ? "bg-rose-3 w-full text-white border-r-8 border-rose-1" : ""}`}>
         <PiSquaresFour className={`${s.icon}`}/>
         Public
+      </Link>
+      <Link to="/main/jobs" className={`${layout.route} ${path==="/main/jobs" ? "bg-rose-3 w-full text-white border-r-8 border-rose-1" : ""}`}>
+        <FaBriefcase className={`${s.icon}`}/>
+        Jobs
       </Link>
       
       <Link to="/main/comp" className={`${layout.route} ${path==="/main/comp" ? "bg-rose-3 w-full text-white border-r-8 border-rose-1" : ""}`}>
